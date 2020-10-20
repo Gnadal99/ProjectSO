@@ -96,3 +96,5 @@ E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_inicial\WindowsFormsA
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_inicial\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
 E:\Docencia\SO\2017-2018Q2\EjercicioGuia\AplicacionInicial\cliente_inicial\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 E:\Docencia\SO\2017-2018Q2\EjercicioGuia\AplicacionInicial\cliente_inicial\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Caty\Desktop\UPC\2B-3A\SO\Proyecto\ProjectSO\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Caty\Desktop\UPC\2B-3A\SO\Proyecto\ProjectSO\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
