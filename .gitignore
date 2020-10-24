@@ -5,7 +5,7 @@
 # Prerequisites
 *.d
 
-# Object files
+# Object files proba
 *.o
 *.ko
 *.obj
