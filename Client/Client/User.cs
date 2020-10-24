@@ -145,7 +145,7 @@ namespace Client
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
-            if (mensaje == "100/Correct")
+            if (mensaje == "101/Correct")
             {
                 MessageBox.Show("Sign up completed");
             }

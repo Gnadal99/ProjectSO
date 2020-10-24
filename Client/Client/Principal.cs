@@ -39,6 +39,10 @@ namespace Client
 
         private void cuantasPartidasHeGanadoEnTotalToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PartidasGanadas pg = new PartidasGanadas();
+            pg.setServer(server);
+            pg.ShowDialog();
+
 
         }
 
