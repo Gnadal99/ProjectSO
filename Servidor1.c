@@ -6,7 +6,6 @@
 #include <netinet/in.h>
 #include <stdio.h>
 #include <mysql.h>
-#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
@@ -29,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9000);
+	serv_adr.sin_port = htons(9200);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -80,11 +79,15 @@ int main(int argc, char *argv[])
 			// para que no escriba lo que hay despues en el buffer
 			peticion[ret]='\0';
 			
-			printf ("Peticion: %s\n",peticion);
+			printf ("P: %s\n",peticion);
 			
 			// vamos a ver que quieren
-			char *p = strtok( peticion, "/");
-			int codigo =  atoi (p);
+			char *t = strtok (peticion, "/");
+			
+			int codigo =  atoi (t);
+			
+			printf ("%d", codigo);
+			
 			// Ya tenemos el codigo de la peticion
 			char nombre[20];
 			
@@ -94,7 +97,7 @@ int main(int argc, char *argv[])
 			char consulta [80];
 			char consulta2[400];
 			
-			
+			printf ("%d", codigo);
 			if (codigo ==0) //peticion de desconexion
 			{
 				terminar=1;
@@ -106,21 +109,14 @@ int main(int argc, char *argv[])
 				char nombre_usuario[40];
 				char contrasena [40];
 				
-				p = strtok( NULL, "/");
-				strcpy (nombre_usuario, p);
+				t = strtok( NULL, "/");
+				strcpy (nombre_usuario, t);
 				printf(nombre_usuario);
 				
 				strcpy (consulta,"SELECT JUGADORES.Contrasena FROM JUGADORES WHERE JUGADORES.Usuario = '"); 
 				strcat (consulta, nombre_usuario);
-				strcpy (consulta,"';");
+				strcpy (consulta,"'");
 				
-				err=mysql_query (conn, consulta); 
-				if (err!=0) 
-				{
-					printf ("Error al consultar usuario de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					exit (1);
-				}
 				
 				resultado = mysql_store_result (conn); 
 				row = mysql_fetch_row (resultado);
@@ -133,8 +129,8 @@ int main(int argc, char *argv[])
 				
 				else
 				{
-					p = strtok( NULL, "/");
-					strcpy (contrasena, p);
+					t = strtok( NULL, "/");
+					strcpy (contrasena, t);
 					
 					
 					if (contrasena == row[0])
@@ -147,6 +143,7 @@ int main(int argc, char *argv[])
 						sprintf (respuesta,"100/Incorrect");
 					}	
 				}	
+				printf ("%s",respuesta);
 			}
 			
 			else if (codigo ==1) //Numero de partidas que ha ganado un jugador
@@ -157,8 +154,7 @@ int main(int argc, char *argv[])
 				err=mysql_query (conn, consulta);
 				 
 				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
+					printf ("Error al consultar datos de la base %u %s\n", mysql_errno(conn), mysql_error(conn));
 					exit (1);
 				}
 				//Recogemos el resultado de la consulta
@@ -179,17 +175,12 @@ int main(int argc, char *argv[])
 
 				sprintf (respuesta,"%d",num_partidas);
 			}
-								
-			else if (codigo ==0)
+			
+			if (codigo != 0)
 			{
-					
-				printf ("Respuesta: %s\n", respuesta);
-					
+				// Enviamos respuesta
+				write (sock_conn,respuesta, strlen(respuesta));
 			}
-				
-		// Enviamos respuesta
-		write (sock_conn,respuesta, strlen(respuesta));
-				
 		}
 
 		// Se acabo el servicio para este cliente
