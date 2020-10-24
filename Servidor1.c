@@ -41,12 +41,15 @@ int main(int argc, char *argv[])
 	int err;
 	
 	conn = mysql_init(NULL);
-	if (conn==NULL) {
+	if (conn==NULL) 
+	{
 		printf ("Error al crear la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
 	
+	//inicializar la conexion
+
 	conn = mysql_real_connect (conn, "localhost","root", "mysql", "JUEGO",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
@@ -91,13 +94,6 @@ int main(int argc, char *argv[])
 			char consulta [80];
 			char consulta2[400];
 			
-			if (codigo !=0)
-			{
-				p = strtok( NULL, "/");
-				strcpy (nombre, p);
-				// Ya tenemos el nombre
-				printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
-			}
 			
 			if (codigo ==0) //peticion de desconexion
 			{
@@ -107,15 +103,16 @@ int main(int argc, char *argv[])
 			else if (codigo ==100)
 			{
 				//ID/Contraseña
-				char ID[40];
+				char nombre_usuario[40];
 				char contrasena [40];
-
-				strcpy (ID, p);
-				printf(ID);
 				
-				strcpy (consulta,"SELECT Usuario FROM JUGADORES WHERE ID = '"); 
-				strcat (consulta, ID);
-				strcpy (consulta,"'");
+				p = strtok( NULL, "/");
+				strcpy (nombre_usuario, p);
+				printf(nombre_usuario);
+				
+				strcpy (consulta,"SELECT JUGADORES.Contrasena FROM JUGADORES WHERE JUGADORES.Usuario = '"); 
+				strcat (consulta, nombre_usuario);
+				strcpy (consulta,"';");
 				
 				err=mysql_query (conn, consulta); 
 				if (err!=0) 
@@ -134,28 +131,22 @@ int main(int argc, char *argv[])
 					sprintf (respuesta,"100/NoUser");
 				}
 				
-/*				else*/
-/*				{*/
-/*					p = strtok( NULL, "/");*/
-/*					strcpy (contrasena, p);*/
+				else
+				{
+					p = strtok( NULL, "/");
+					strcpy (contrasena, p);
 					
-/*					strcpy (consulta2,"SELECT Contrasena FROM JUGADORES WHERE ID = '"); */
-/*					strcat (consulta2, ID);*/
-/*					strcat (consulta2,"'");*/
-/*					err=mysql_query (conn, consulta2);*/
-/*					resultado = mysql_store_result (conn); */
-/*					row = mysql_fetch_row (resultado);*/
 					
-/*					if (contrasena == row[0])*/
-/*					{*/
-/*						sprintf (respuesta,"100/Correct");*/
-/*					}*/
+					if (contrasena == row[0])
+					{
+						sprintf (respuesta,"100/Correct");
+					}
 					
-/*					else */
-/*					{*/
-/*						sprintf (respuesta,"100/Incorrect");*/
-/*					}	*/
-/*				}	*/
+					else 
+					{
+						sprintf (respuesta,"100/Incorrect");
+					}	
+				}	
 			}
 			
 			else if (codigo ==1) //Numero de partidas que ha ganado un jugador
@@ -202,8 +193,9 @@ int main(int argc, char *argv[])
 		}
 
 		// Se acabo el servicio para este cliente
-		mysql_close (conn);
+		
 		close(sock_conn); 
 
 	}
+	mysql_close (conn);
 }
