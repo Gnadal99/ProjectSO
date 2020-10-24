@@ -48,7 +48,7 @@ namespace Client
 
                 if (mensaje == "1/NoExist")
                 {
-                    MessageBox.Show("The user doesn't exist");
+                    label2.Text = " El jugador " + usernameconsulta.Text + " no existe.";
                 }
 
                 else
