@@ -79,6 +79,7 @@
             this.horaYFechaDeUnaPartidaToolStripMenuItem.Name = "horaYFechaDeUnaPartidaToolStripMenuItem";
             this.horaYFechaDeUnaPartidaToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.horaYFechaDeUnaPartidaToolStripMenuItem.Text = "Hora y fecha de una partida";
+            this.horaYFechaDeUnaPartidaToolStripMenuItem.Click += new System.EventHandler(this.horaYFechaDeUnaPartidaToolStripMenuItem_Click);
             // 
             // cuántasPartidasGanéElDiaToolStripMenuItem
             // 

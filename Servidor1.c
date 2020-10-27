@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9039);
+	serv_adr.sin_port = htons(9050);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -253,10 +253,14 @@ int main(int argc, char *argv[])
 				MYSQL_RES *resultado;
 				MYSQL_ROW row;
 				char consulta [800];
+				char IDpartida [10];
 				
+				t = strtok( NULL, "/");
+				printf("t: %s\n",t);
+				strcpy (IDpartida, t);
 				
 				strcpy (consulta,"SELECT PARTIDAS.Fecha_Hora FROM (PARTIDAS, JUGADORES, PARTICIPACION) WHERE  PARTIDAS.ID = ");
-				strcat (consulta,);
+				strcat (consulta,IDpartida);
 				strcat (consulta," AND    JUGADORES.ID = PARTICIPACION.ID_J		AND    PARTIDAS.ID = PARTICIPACION.ID_P;"); 
 				
 				
@@ -271,7 +275,7 @@ int main(int argc, char *argv[])
 				resultado = mysql_store_result (conn);
 				row = mysql_fetch_row (resultado);
 				printf("row0 %s\n",row[0]);
-				char vector_nombres[500];
+				
 				
 				if (row == NULL)
 				{
@@ -281,16 +285,9 @@ int main(int argc, char *argv[])
 				
 				else 
 				{
-					strcpy(vector_nombres,row[0]);
-					row = mysql_fetch_row (resultado);
-					while (row !=NULL) 
-					{
-						strcat(vector_nombres," ");
-						strcat(vector_nombres,row[0]);
-						printf ("Los ganadores de las partidas de mas de 10 minutos son: %s\n", row[0] );
-						row = mysql_fetch_row (resultado);
-					}
-					strcpy (respuesta, vector_nombres);
+					if row[0] == 0
+						strcpy(respuesta,"3/NoExist");
+					strcpy (respuesta, row[0]);
 					printf("resp: %s\n",respuesta);
 				}
 				
@@ -302,7 +299,7 @@ int main(int argc, char *argv[])
 			if (codigo != 0)
 			{
 				// Enviamos respuesta
-				write (sock_conn,respuesta, strlen(respuesta));
+				write (sock_conn, respuesta, strlen(respuesta));
 			}
 		}
 

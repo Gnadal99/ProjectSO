@@ -65,5 +65,14 @@ namespace Client
             gm.setLista(mensaje);
             gm.ShowDialog();
         }
+
+        private void horaYFechaDeUnaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ganadores10min gm = new Ganadores10min();
+            HoraFecha hf = new HoraFecha();
+            hf.setServer(server);
+            hf.ShowDialog();
+
+        }
     }
 }
