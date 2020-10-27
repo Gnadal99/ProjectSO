@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	int sock_conn, sock_listen, ret;
 	struct sockaddr_in serv_adr;
 	char peticion[512];
-	char respuesta[512];
+	
 	// INICIALITZACIONS
 	// Obrim el socket
 	if ((sock_listen = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9500);
+	serv_adr.sin_port = htons(9039);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -73,6 +73,7 @@ int main(int argc, char *argv[])
 		//hasta que se desconecte
 		while (terminar ==0)
 		{
+			char respuesta[512];
 			MYSQL_RES *resultado;
 			MYSQL_ROW row;
 			// Ahora recibimos la peticion
@@ -94,11 +95,6 @@ int main(int argc, char *argv[])
 			
 			// Ya tenemos el codigo de la peticion
 			char nombre[20];
-			
-		
-
-			
-			
 			
 			
 			if (codigo ==0) //peticion de desconexion
@@ -175,7 +171,7 @@ int main(int argc, char *argv[])
 				
 				strcpy (consulta,"SELECT COUNT(PARTIDAS.ID) FROM (PARTIDAS, JUGADORES, PARTICIPACION) WHERE PARTIDAS.ganador= '"); 
 				strcat (consulta, nombre);
-				strcat (consulta,"' AND JUGADORES.ID=PARTICIPACION.ID_J AND PARTIDAS.ID=PARTICIPACION.ID_P     AND    PARTICIPACION.ID_P = (SELECT JUGADORES.ID FROM JUGADORES WHERE JUGADORES.Usuario = '");
+				strcat (consulta,"' AND JUGADORES.ID=PARTICIPACION.ID_J AND PARTIDAS.ID=PARTICIPACION.ID_P     AND    PARTICIPACION.ID_J = (SELECT JUGADORES.ID FROM JUGADORES WHERE JUGADORES.Usuario = '");
 				strcat (consulta, nombre);
 				strcat (consulta, "');");
 				
@@ -203,6 +199,105 @@ int main(int argc, char *argv[])
 
 				sprintf (respuesta,row[0]);
 			}
+			
+			else if (codigo == 2)
+			{
+				MYSQL_RES *resultado;
+				MYSQL_ROW row;
+				char consulta [800];
+				
+			
+				strcpy (consulta,"SELECT DISTINCT PARTIDAS.Ganador FROM (PARTIDAS, JUGADORES, PARTICIPACION)  WHERE  PARTIDAS.Duracion <= 10   AND    JUGADORES.ID = PARTICIPACION.ID_J   AND    PARTIDAS.ID = PARTICIPACION.ID_P;"); 
+				
+				
+				
+				err=mysql_query (conn, consulta);
+				
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
+				//Recogemos el resultado de la consulta
+				resultado = mysql_store_result (conn);
+				row = mysql_fetch_row (resultado);
+				printf("row0 %s\n",row[0]);
+				char vector_nombres[500];
+				
+				if (row == NULL)
+				{
+					printf ("No se han obtenido datos en la consulta\n");
+				}
+				
+				
+				else 
+				{
+					strcpy(vector_nombres,row[0]);
+					row = mysql_fetch_row (resultado);
+					while (row !=NULL) 
+					{
+						strcat(vector_nombres," ");
+						strcat(vector_nombres,row[0]);
+						printf ("Los ganadores de las partidas de mas de 10 minutos son: %s\n", row[0] );
+						row = mysql_fetch_row (resultado);
+					}
+					strcpy (respuesta, vector_nombres);
+					printf("resp: %s\n",respuesta);
+				}
+				
+				
+				
+			}
+			
+			else if (codigo == 3)
+			{
+				MYSQL_RES *resultado;
+				MYSQL_ROW row;
+				char consulta [800];
+				
+				
+				strcpy (consulta,"SELECT PARTIDAS.Fecha_Hora FROM (PARTIDAS, JUGADORES, PARTICIPACION) WHERE  PARTIDAS.ID = ");
+				strcat (consulta,);
+				strcat (consulta," AND    JUGADORES.ID = PARTICIPACION.ID_J		AND    PARTIDAS.ID = PARTICIPACION.ID_P;"); 
+				
+				
+				
+				err=mysql_query (conn, consulta);
+				
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
+				//Recogemos el resultado de la consulta
+				resultado = mysql_store_result (conn);
+				row = mysql_fetch_row (resultado);
+				printf("row0 %s\n",row[0]);
+				char vector_nombres[500];
+				
+				if (row == NULL)
+				{
+					printf ("No se han obtenido datos en la consulta\n");
+				}
+				
+				
+				else 
+				{
+					strcpy(vector_nombres,row[0]);
+					row = mysql_fetch_row (resultado);
+					while (row !=NULL) 
+					{
+						strcat(vector_nombres," ");
+						strcat(vector_nombres,row[0]);
+						printf ("Los ganadores de las partidas de mas de 10 minutos son: %s\n", row[0] );
+						row = mysql_fetch_row (resultado);
+					}
+					strcpy (respuesta, vector_nombres);
+					printf("resp: %s\n",respuesta);
+				}
+				
+				
+				
+			}
+			
 			
 			if (codigo != 0)
 			{

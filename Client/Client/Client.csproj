@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ganadores10min.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ganadores10min.Designer.cs">
+      <DependentUpon>Ganadores10min.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartidasGanadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ganadores10min.resx">
+      <DependentUpon>Ganadores10min.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PartidasGanadas.resx">
       <DependentUpon>PartidasGanadas.cs</DependentUpon>
     </EmbeddedResource>
