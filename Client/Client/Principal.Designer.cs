@@ -44,7 +44,8 @@
             this.consultasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(521, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(455, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,51 +57,53 @@
             this.horaYFechaDeUnaPartidaToolStripMenuItem,
             this.cuántasPartidasGanéElDiaToolStripMenuItem});
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.consultasToolStripMenuItem.Text = "Consultas";
             // 
             // cuantasPartidasHeGanadoEnTotalToolStripMenuItem
             // 
             this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem.Name = "cuantasPartidasHeGanadoEnTotalToolStripMenuItem";
-            this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem.Size = new System.Drawing.Size(390, 24);
+            this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem.Text = "Cuantas partidas ha ganado el jugador...";
             this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem.Click += new System.EventHandler(this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem_Click);
             // 
             // quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem
             // 
             this.quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem.Name = "quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem";
-            this.quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem.Size = new System.Drawing.Size(390, 24);
+            this.quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem.Text = "Quien ha ganado una partida de más de 10min";
             // 
             // horaYFechaDeUnaPartidaToolStripMenuItem
             // 
             this.horaYFechaDeUnaPartidaToolStripMenuItem.Name = "horaYFechaDeUnaPartidaToolStripMenuItem";
-            this.horaYFechaDeUnaPartidaToolStripMenuItem.Size = new System.Drawing.Size(390, 24);
+            this.horaYFechaDeUnaPartidaToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.horaYFechaDeUnaPartidaToolStripMenuItem.Text = "Hora y fecha de una partida";
             // 
             // cuántasPartidasGanéElDiaToolStripMenuItem
             // 
             this.cuántasPartidasGanéElDiaToolStripMenuItem.Name = "cuántasPartidasGanéElDiaToolStripMenuItem";
-            this.cuántasPartidasGanéElDiaToolStripMenuItem.Size = new System.Drawing.Size(390, 24);
+            this.cuántasPartidasGanéElDiaToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.cuántasPartidasGanéElDiaToolStripMenuItem.Text = "Cuántas partidas gané el dia ...";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(443, 28);
+            this.label1.Location = new System.Drawing.Point(332, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 17);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Usuario: ";
             // 
             // Principal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 365);
+            this.ClientSize = new System.Drawing.Size(455, 297);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Principal";
             this.Text = "Principal";
             this.Load += new System.EventHandler(this.Principal_Load);

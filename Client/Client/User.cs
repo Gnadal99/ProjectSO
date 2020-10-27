@@ -34,7 +34,7 @@ namespace Client
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
                 IPAddress direc = IPAddress.Parse("192.168.56.102");
-                IPEndPoint ipep = new IPEndPoint(direc, 9200);
+                IPEndPoint ipep = new IPEndPoint(direc, 9500);
 
 
                 //Creamos el socket 
@@ -76,6 +76,7 @@ namespace Client
                     prin.setUser(user);
                     this.Hide();
                     prin.ShowDialog();
+                    this.Close();
                 }
 
                 else 

@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9200);
+	serv_adr.sin_port = htons(9500);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -38,6 +38,8 @@ int main(int argc, char *argv[])
 	//Establecer conexion con la base de datos
 	MYSQL *conn;
 	int err;
+	
+	
 	
 	conn = mysql_init(NULL);
 	if (conn==NULL) 
@@ -71,6 +73,8 @@ int main(int argc, char *argv[])
 		//hasta que se desconecte
 		while (terminar ==0)
 		{
+			MYSQL_RES *resultado;
+			MYSQL_ROW row;
 			// Ahora recibimos la peticion
 			ret=read(sock_conn,peticion, sizeof(peticion));
 			printf ("Recibido\n");
@@ -86,18 +90,17 @@ int main(int argc, char *argv[])
 			
 			int codigo =  atoi (t);
 			
-			printf ("%d", codigo);
+			printf ("Codigo: %d \n", codigo);
 			
 			// Ya tenemos el codigo de la peticion
 			char nombre[20];
 			
-			MYSQL_RES *resultado;
-			MYSQL_ROW row;
-			conn = mysql_init(NULL);
-			char consulta [80];
-			char consulta2[400];
+		
+
 			
-			printf ("%d", codigo);
+			
+			
+			
 			if (codigo ==0) //peticion de desconexion
 			{
 				terminar=1;
@@ -108,14 +111,22 @@ int main(int argc, char *argv[])
 				//ID/Contraseña
 				char nombre_usuario[40];
 				char contrasena [40];
+				char consulta [800];
 				
 				t = strtok( NULL, "/");
 				strcpy (nombre_usuario, t);
-				printf(nombre_usuario);
+				printf("Nombre usuario %s\n", nombre_usuario);
 				
 				strcpy (consulta,"SELECT JUGADORES.Contrasena FROM JUGADORES WHERE JUGADORES.Usuario = '"); 
 				strcat (consulta, nombre_usuario);
-				strcpy (consulta,"'");
+				strcat (consulta,"'");
+				
+				err=mysql_query (conn, consulta);
+				if (err!=0) {
+					printf ("Error al consultar datos2 de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
 				
 				
 				resultado = mysql_store_result (conn); 
@@ -131,9 +142,10 @@ int main(int argc, char *argv[])
 				{
 					t = strtok( NULL, "/");
 					strcpy (contrasena, t);
+					printf("Con recib %s\n", contrasena);
+					printf("con db %s\n",row[0]);
 					
-					
-					if (contrasena == row[0])
+					if (strcmp(contrasena,row[0]) == 0)
 					{
 						sprintf (respuesta,"100/Correct");
 					}
@@ -148,9 +160,26 @@ int main(int argc, char *argv[])
 			
 			else if (codigo ==1) //Numero de partidas que ha ganado un jugador
 			{	
+				MYSQL_RES *resultado;
+				MYSQL_ROW row;
+				char consulta [800];
+				
+				//nombre
+				char nombre[40];
+				
+				
+				t = strtok( NULL, "/");
+				strcpy (nombre, t);
+				printf("Nombre usuario %s\n", nombre);
+				
+				
 				strcpy (consulta,"SELECT COUNT(PARTIDAS.ID) FROM (PARTIDAS, JUGADORES, PARTICIPACION) WHERE PARTIDAS.ganador= '"); 
 				strcat (consulta, nombre);
-				strcat (consulta,"'&& JUGADORES.ID=PARTICIPACION.ID_J && PARTIDAS.ID=PARTICIPACION.ID_P");
+				strcat (consulta,"' AND JUGADORES.ID=PARTICIPACION.ID_J AND PARTIDAS.ID=PARTICIPACION.ID_P     AND    PARTICIPACION.ID_P = (SELECT JUGADORES.ID FROM JUGADORES WHERE JUGADORES.Usuario = '");
+				strcat (consulta, nombre);
+				strcat (consulta, "');");
+				
+				
 				err=mysql_query (conn, consulta);
 				 
 				if (err!=0) {
@@ -160,7 +189,7 @@ int main(int argc, char *argv[])
 				//Recogemos el resultado de la consulta
 				resultado = mysql_store_result (conn);
 				row = mysql_fetch_row (resultado);
-				int num_partidas;
+				
 				
 				if (row == NULL)
 				{
@@ -169,11 +198,10 @@ int main(int argc, char *argv[])
 				
 				else 
 				{
-					num_partidas= row[0];
-					printf ("El jugador %s ha ganado %d s\n", nombre, num_partidas);
+					printf ("El jugador %s ha ganado %s s\n", nombre, row[0]);
 				}
 
-				sprintf (respuesta,"%d",num_partidas);
+				sprintf (respuesta,row[0]);
 			}
 			
 			if (codigo != 0)
