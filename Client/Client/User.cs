@@ -15,6 +15,7 @@ namespace Client
     public partial class User : Form
     {
         Socket server;
+        int puerto = 9005;
         public User()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace Client
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
                 IPAddress direc = IPAddress.Parse("192.168.56.102");
-                IPEndPoint ipep = new IPEndPoint(direc, 9050);
+                IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
 
                 //Creamos el socket 
@@ -122,7 +123,7 @@ namespace Client
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9200);
+            IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
 
             //Creamos el socket 
@@ -164,6 +165,11 @@ namespace Client
             else if (mensaje == "101/Incorrect")
             {
                 MessageBox.Show("User already exist");
+            }
+
+            else if (mensaje == "101/Incorrect2")
+            {
+                MessageBox.Show("Register error. Try later.");
             }
 
             //Mensaje de desconexión

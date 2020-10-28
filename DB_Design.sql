@@ -12,7 +12,9 @@ CREATE TABLE JUGADORES (
   
 
 
+
 PRIMARY KEY (ID)
+
 
 )ENGINE=InnoDB;
 
