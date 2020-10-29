@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 				if (row == NULL)
 				{
 					
-					strcpy (consulta,"SELECT ID FROM JUGADORES;"); 
+					strcpy (consulta,"SELECT COUNT(ID) FROM JUGADORES;"); 
 					
 					
 					err=mysql_query (conn, consulta);
@@ -197,25 +197,14 @@ int main(int argc, char *argv[])
 						exit (1);
 					}
 					
+					int max_ID;
+					char ID[80];
 					
 					resultado = mysql_store_result (conn); 
 					row = mysql_fetch_row (resultado);
 					
-					int k = 0;
-					int max_ID = 0;
-					char ID[50];
 					
-					while ( k < sizeof(row))
-					{
-						printf("pr: %s\n",row[1]);
-						
-/*						if (max_ID < atoi (row[k]))*/
-/*							max_ID = atoi (row[k]);*/
-						k = k + 1;
-					
-					}
-					
-					max_ID = max_ID + 1;
+					max_ID = row[0] + 1;
 					
 					
 					strcpy (consulta, "INSERT INTO JUGADORES VALUES (");
