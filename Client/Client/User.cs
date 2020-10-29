@@ -15,7 +15,7 @@ namespace Client
     public partial class User : Form
     {
         Socket server;
-        int puerto = 9008;
+        int puerto = 9009;
         public User()
         {
             InitializeComponent();

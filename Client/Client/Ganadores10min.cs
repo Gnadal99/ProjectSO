@@ -30,13 +30,13 @@ namespace Client
             vector= Lista.Split(' ');
 
 
-            dataGridView1.RowCount = 5;
-            dataGridView1.ColumnCount = 1;
+            dataGridView1.RowCount = 1;
+            dataGridView1.ColumnCount = 5;
 
             int i = 0;
             while (i < vector.Length)
             {
-                dataGridView1.Rows[i].Cells[0].Value = vector[i];
+                dataGridView1.Rows[0].Cells[i].Value = vector[i];
                 i++;
             }
 

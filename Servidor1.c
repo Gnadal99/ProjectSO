@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9008);
+	serv_adr.sin_port = htons(9009);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -204,7 +204,7 @@ int main(int argc, char *argv[])
 					row = mysql_fetch_row (resultado);
 					
 					
-					max_ID = row[0] + 1;
+					max_ID = atoi(row[0]) + 1;
 					
 					
 					strcpy (consulta, "INSERT INTO JUGADORES VALUES (");
