@@ -68,11 +68,19 @@ namespace Client
 
         private void horaYFechaDeUnaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Ganadores10min gm = new Ganadores10min();
+           
             HoraFecha hf = new HoraFecha();
             hf.setServer(server);
             hf.ShowDialog();
 
+        }
+
+        private void cuántasPartidasGanéElDiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GanadasDia gd = new GanadasDia();
+            gd.setServer(server);
+            gd.setName(username);
+            gd.ShowDialog();
         }
     }
 }

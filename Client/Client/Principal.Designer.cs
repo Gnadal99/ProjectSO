@@ -86,6 +86,7 @@
             this.cuántasPartidasGanéElDiaToolStripMenuItem.Name = "cuántasPartidasGanéElDiaToolStripMenuItem";
             this.cuántasPartidasGanéElDiaToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.cuántasPartidasGanéElDiaToolStripMenuItem.Text = "Cuántas partidas gané el dia ...";
+            this.cuántasPartidasGanéElDiaToolStripMenuItem.Click += new System.EventHandler(this.cuántasPartidasGanéElDiaToolStripMenuItem_Click);
             // 
             // label1
             // 

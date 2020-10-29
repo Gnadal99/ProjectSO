@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GanadasDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GanadasDia.Designer.cs">
+      <DependentUpon>GanadasDia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ganadores10min.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GanadasDia.resx">
+      <DependentUpon>GanadasDia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ganadores10min.resx">
       <DependentUpon>Ganadores10min.cs</DependentUpon>
     </EmbeddedResource>

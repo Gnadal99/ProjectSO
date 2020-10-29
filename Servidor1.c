@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9005);
+	serv_adr.sin_port = htons(9008);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -375,6 +375,61 @@ int main(int argc, char *argv[])
 					if (row[0] == 0)
 						strcpy(respuesta,"3/NoExist");
 					strcpy (respuesta, row[0]);
+					printf("resp: %s\n",respuesta);
+				}
+				
+				
+				
+			}
+			
+			else if (codigo == 4)
+			{
+				MYSQL_RES *resultado;
+				MYSQL_ROW row;
+				char consulta [800];
+				char dia [20];
+				char usuario [20];
+				
+				t = strtok( NULL, "-");
+				printf("t: %s\n",t);
+				strcpy (usuario, t);
+				
+				t = strtok( NULL, "-");
+				printf("t: %s\n",t);
+				strcpy (dia, t);
+				
+				strcpy (consulta,"SELECT COUNT(PARTICIPACION.ID_J) FROM (PARTIDAS, JUGADORES, PARTICIPACION) WHERE  SUBSTRING(PARTIDAS.Fecha_Hora, 1, 10)  = '");
+				strcat (consulta,dia);
+				strcat (consulta,"' AND PARTICIPACION.ID_J = (SELECT ID FROM JUGADORES WHERE Usuario = '");
+				strcat (consulta,usuario);
+				strcat (consulta, "')	AND    JUGADORES.ID = PARTICIPACION.ID_J	AND    PARTIDAS.ID = PARTICIPACION.ID_P;");
+				
+				
+				
+				err=mysql_query (conn, consulta);
+				
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
+				//Recogemos el resultado de la consulta
+				resultado = mysql_store_result (conn);
+				row = mysql_fetch_row (resultado);
+				
+				
+				
+				if (row == NULL)
+				{
+					printf ("No se han obtenido datos en la consulta\n");
+				}
+				
+				
+				
+				else 
+				{
+					char resp[20];
+					sprintf(resp,"%d",atoi(row[0]));
+					strcpy(respuesta, resp);
 					printf("resp: %s\n",respuesta);
 				}
 				
