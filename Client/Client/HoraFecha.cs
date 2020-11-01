@@ -47,7 +47,7 @@ namespace Client
 
                 if (mensaje == "3/NoExist")
                 {
-                    label2.Text = " La partida con el ID: " + IDpartida.Text + " no existe.";
+                    label2.Text = "La partida con el ID: " + IDpartida.Text + " no existe.";
                 }
 
                 else

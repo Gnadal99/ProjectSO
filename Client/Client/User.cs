@@ -15,7 +15,7 @@ namespace Client
     public partial class User : Form
     {
         Socket server;
-        int puerto = 9009;
+        int puerto = 9200;
         public User()
         {
             InitializeComponent();
@@ -25,8 +25,6 @@ namespace Client
         {
 
         }
-
-      
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -57,8 +55,6 @@ namespace Client
 
                 string user = username.Text;
                 string pass = password.Text;
-
-
                 string mensaje = "100/" + user + "/" + pass;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -94,11 +90,11 @@ namespace Client
                 {
                     if (mensaje == "100/NoUser")
                     {
-                    MessageBox.Show("The user doesn't exist, please register a new user to continue");
+                    MessageBox.Show("El usuario introducido no existe, porfavor regístrese.");
                     }
                     else if (mensaje == "100/Incorrect")
                     {
-                        MessageBox.Show("Incorrect password");
+                        MessageBox.Show("Contraseña incorrecta.");
                     }
                     //Mensaje de desconexión
                     mensaje = "0/";
@@ -111,10 +107,6 @@ namespace Client
                     server.Shutdown(SocketShutdown.Both);
                     server.Close();
                 }
-
-               
-
-               
             }
         }
 
@@ -132,21 +124,19 @@ namespace Client
             {
                 server.Connect(ipep);//Intentamos conectar el socket
                 this.BackColor = Color.Green;
-                MessageBox.Show("Conectado");
+                MessageBox.Show("Conectado.");
 
             }
             catch (SocketException ex)
             {
                 //Si hay excepcion imprimimos error y salimos del programa con return 
-                MessageBox.Show("No he podido conectar con el servidor");
+                MessageBox.Show("No se ha podido conectar con el servidor.");
                 return;
             }
 
 
             string user = username.Text;
             string pass = password.Text;
-
-
             string mensaje = "101/" + user + "/" + pass;
             // Enviamos al servidor el nombre tecleado
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -159,17 +149,17 @@ namespace Client
 
             if (mensaje == "101/Correct")
             {
-                MessageBox.Show("Sign up completed");
+                MessageBox.Show("Registro completado.");
             }
 
             else if (mensaje == "101/Incorrect")
             {
-                MessageBox.Show("User already exist");
+                MessageBox.Show("El usuario ya existe.");
             }
 
             else if (mensaje == "101/Incorrect2")
             {
-                MessageBox.Show("Register error. Try later.");
+                MessageBox.Show("Error de registro, inténtalo de nuevo.");
             }
 
             //Mensaje de desconexión
@@ -183,11 +173,5 @@ namespace Client
             server.Shutdown(SocketShutdown.Both);
             server.Close();
         }
-
-
-
-
-
-
     }
 }

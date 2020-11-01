@@ -11,8 +11,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Channels;
 
-
-
 namespace Client
 {
     public partial class GanadasDia : Form
@@ -48,8 +46,13 @@ namespace Client
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
-                label2.Text = "El dia " + textBox1.Text + " ganaste: " + mensaje + " partidas.";
+                label2.Text = "El día " + textBox1.Text + " ganaste " + mensaje + " partidas.";
             }
+        }
+
+        private void GanadasDia_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,7 +16,6 @@ namespace Client
         {
             InitializeComponent();
         }
-
        
         public void setLista(string Lista2)
         {
@@ -29,7 +28,8 @@ namespace Client
 
             vector= Lista.Split(' ');
 
-
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.RowCount = 1;
             dataGridView1.ColumnCount = 5;
 
@@ -39,9 +39,6 @@ namespace Client
                 dataGridView1.Rows[0].Cells[i].Value = vector[i];
                 i++;
             }
-
-
-            
         }
     }
 }

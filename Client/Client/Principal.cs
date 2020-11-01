@@ -44,7 +44,6 @@ namespace Client
             pg.setServer(server);
             pg.ShowDialog();
 
-
         }
 
         private void quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,19 +59,16 @@ namespace Client
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-             
-
+       
             gm.setLista(mensaje);
             gm.ShowDialog();
         }
 
         private void horaYFechaDeUnaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
             HoraFecha hf = new HoraFecha();
             hf.setServer(server);
             hf.ShowDialog();
-
         }
 
         private void cuántasPartidasGanéElDiaToolStripMenuItem_Click(object sender, EventArgs e)
