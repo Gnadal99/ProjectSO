@@ -9,34 +9,34 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Net;
 using System.Net.Sockets;
-
+using System.Runtime.Remoting.Channels;
 
 namespace Client
 {
-    public partial class PartidasGanadas : Form
+    public partial class GanadasDia : Form
     {
+        string username;
         Socket server;
-
-        public PartidasGanadas()
+        public GanadasDia()
         {
             InitializeComponent();
         }
 
-        public void setServer(Socket a)   
+        public void setName(string a)
+        {
+            this.username = a;
+        }
+
+        public void setServer(Socket a)
         {
             this.server = a;
         }
 
-        private void PartidasGanadas_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            if (usernameconsulta.Text != "")
+            if (textBox1.Text != "")
             {
-                string mensaje = "1/" + usernameconsulta.Text;
+                string mensaje = "4/" + username + "-" + textBox1.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -46,16 +46,13 @@ namespace Client
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
-                if (mensaje == "1/NoExist")
-                {
-                    label2.Text = "El jugador " + usernameconsulta.Text + " no existe.";
-                }
-
-                else
-                {
-                    label2.Text = "El jugador " + usernameconsulta.Text + " ha ganado " + mensaje + " partidas.";
-                }
+                label2.Text = "El día " + textBox1.Text + " ganaste " + mensaje + " partidas.";
             }
+        }
+
+        private void GanadasDia_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

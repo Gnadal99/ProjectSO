@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Remoting.Channels;
 
 namespace Client
 {
@@ -43,11 +44,39 @@ namespace Client
             pg.setServer(server);
             pg.ShowDialog();
 
-
         }
 
-        
+        private void quienHaGanadoUnaPartidaDeMásDe10minToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ganadores10min gm = new Ganadores10min();
 
+            string mensaje = "2/vacio";
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
        
+            gm.setLista(mensaje);
+            gm.ShowDialog();
+        }
+
+        private void horaYFechaDeUnaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HoraFecha hf = new HoraFecha();
+            hf.setServer(server);
+            hf.ShowDialog();
+        }
+
+        private void cuántasPartidasGanéElDiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GanadasDia gd = new GanadasDia();
+            gd.setServer(server);
+            gd.setName(username);
+            gd.ShowDialog();
+        }
     }
 }
