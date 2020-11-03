@@ -48,16 +48,14 @@ namespace Client
 
                 if (mensaje == "1/NoExist")
                 {
-                    label2.Text = " El jugador " + usernameconsulta.Text + " no existe.";
+                    label2.Text = "El jugador " + usernameconsulta.Text + " no existe.";
                 }
 
                 else
                 {
-                    label2.Text = " El jugador " + usernameconsulta.Text + " ha ganado " + mensaje + " partidas.";
+                    label2.Text = "El jugador " + usernameconsulta.Text + " ha ganado " + mensaje + " partidas.";
                 }
             }
         }
-
-        
     }
 }

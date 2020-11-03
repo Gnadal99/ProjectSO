@@ -39,27 +39,48 @@
             // label1
             // 
             this.label1.AutoSize = true;
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(46, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
+=======
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(56, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 19);
+>>>>>>> dev-ThreadsC_1
             this.label1.TabIndex = 0;
-            this.label1.Text = "User:";
+            this.label1.Text = "Usuario:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+<<<<<<< HEAD
             this.label2.Location = new System.Drawing.Point(46, 49);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
+=======
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(56, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 19);
+>>>>>>> dev-ThreadsC_1
             this.label2.TabIndex = 1;
-            this.label2.Text = "Password:";
+            this.label2.Text = "Contraseña:";
             // 
             // password
             // 
+<<<<<<< HEAD
             this.password.Location = new System.Drawing.Point(116, 46);
             this.password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+=======
+            this.password.Location = new System.Drawing.Point(157, 63);
+            this.password.Margin = new System.Windows.Forms.Padding(2);
+>>>>>>> dev-ThreadsC_1
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(76, 20);
@@ -67,47 +88,84 @@
             // 
             // button1
             // 
+<<<<<<< HEAD
             this.button1.Location = new System.Drawing.Point(18, 82);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+=======
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(60, 114);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+>>>>>>> dev-ThreadsC_1
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(69, 30);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Log In";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "Entrar";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // username
             // 
+<<<<<<< HEAD
             this.username.Location = new System.Drawing.Point(116, 19);
             this.username.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+=======
+            this.username.Location = new System.Drawing.Point(157, 29);
+            this.username.Margin = new System.Windows.Forms.Padding(2);
+>>>>>>> dev-ThreadsC_1
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(76, 20);
             this.username.TabIndex = 3;
             // 
             // button2
             // 
+<<<<<<< HEAD
             this.button2.Location = new System.Drawing.Point(122, 82);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(69, 30);
+=======
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(153, 114);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(80, 30);
+>>>>>>> dev-ThreadsC_1
             this.button2.TabIndex = 6;
-            this.button2.Text = "Sign Up";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Registrarse";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(223, 136);
+=======
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ClientSize = new System.Drawing.Size(296, 173);
+>>>>>>> dev-ThreadsC_1
             this.Controls.Add(this.button2);
             this.Controls.Add(this.username);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.password);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+<<<<<<< HEAD
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+=======
+            this.Margin = new System.Windows.Forms.Padding(2);
+>>>>>>> dev-ThreadsC_1
             this.Name = "User";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

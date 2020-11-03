@@ -37,27 +37,51 @@
             // label1
             // 
             this.label1.AutoSize = true;
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
+=======
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(30, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 15);
+>>>>>>> dev-ThreadsC_1
             this.label1.TabIndex = 0;
             this.label1.Text = "ID Partida:";
             // 
             // IDpartida
             // 
+<<<<<<< HEAD
             this.IDpartida.Location = new System.Drawing.Point(75, 15);
+=======
+            this.IDpartida.Location = new System.Drawing.Point(103, 22);
+>>>>>>> dev-ThreadsC_1
             this.IDpartida.Name = "IDpartida";
             this.IDpartida.Size = new System.Drawing.Size(100, 20);
             this.IDpartida.TabIndex = 1;
             // 
             // button1
             // 
+<<<<<<< HEAD
             this.button1.Location = new System.Drawing.Point(194, 13);
+=======
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(258, 20);
+>>>>>>> dev-ThreadsC_1
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Consultar";
+<<<<<<< HEAD
             this.button1.UseVisualStyleBackColor = true;
+=======
+            this.button1.UseVisualStyleBackColor = false;
+>>>>>>> dev-ThreadsC_1
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
@@ -72,12 +96,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(349, 104);
+=======
+            this.BackColor = System.Drawing.Color.Tan;
+            this.ClientSize = new System.Drawing.Size(415, 125);
+>>>>>>> dev-ThreadsC_1
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.IDpartida);
             this.Controls.Add(this.label1);
             this.Name = "HoraFecha";
+<<<<<<< HEAD
+=======
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+>>>>>>> dev-ThreadsC_1
             this.Text = "HoraFecha";
             this.Load += new System.EventHandler(this.HoraFecha_Load);
             this.ResumeLayout(false);

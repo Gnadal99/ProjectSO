@@ -37,9 +37,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(29, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
+=======
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(25, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 15);
+>>>>>>> dev-ThreadsC_1
             this.label1.TabIndex = 0;
             this.label1.Text = "Dia:";
             // 
@@ -53,12 +60,24 @@
             // 
             // button1
             // 
+<<<<<<< HEAD
+=======
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> dev-ThreadsC_1
             this.button1.Location = new System.Drawing.Point(192, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Consultar";
+<<<<<<< HEAD
             this.button1.UseVisualStyleBackColor = true;
+=======
+            this.button1.UseVisualStyleBackColor = false;
+>>>>>>> dev-ThreadsC_1
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
@@ -72,13 +91,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(325, 159);
+=======
+            this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.ClientSize = new System.Drawing.Size(325, 135);
+>>>>>>> dev-ThreadsC_1
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "GanadasDia";
+<<<<<<< HEAD
             this.Text = "GanadasDia";
+=======
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "GanadasDia";
+            this.Load += new System.EventHandler(this.GanadasDia_Load);
+>>>>>>> dev-ThreadsC_1
             this.ResumeLayout(false);
             this.PerformLayout();
 

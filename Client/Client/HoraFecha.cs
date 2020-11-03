@@ -47,7 +47,11 @@ namespace Client
 
                 if (mensaje == "3/NoExist")
                 {
+<<<<<<< HEAD
                     label2.Text = " La partida con el ID: " + IDpartida.Text + " no existe.";
+=======
+                    label2.Text = "La partida con el ID: " + IDpartida.Text + " no existe.";
+>>>>>>> dev-ThreadsC_1
                 }
 
                 else
