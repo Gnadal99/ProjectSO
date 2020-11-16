@@ -15,6 +15,7 @@ namespace Client
 {
     public partial class Principal : Form
     {
+        string ListaConectados;
         Socket server;
         string username;
 
@@ -77,6 +78,76 @@ namespace Client
             gd.setServer(server);
             gd.setName(username);
             gd.ShowDialog();
+        }
+
+        private void MostrarConectados_Click(object sender, EventArgs e)
+        {
+
+            string mensaje = "27/vacio";
+
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            ListaConectados = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            string[] vector = new string[5];
+            vector = ListaConectados.Split(',');
+
+            ShowConectados.RowHeadersVisible = false;
+            ShowConectados.ColumnHeadersVisible = false;
+            ShowConectados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            ShowConectados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ShowConectados.RowCount = vector.Length;
+            ShowConectados.ColumnCount = 1;
+
+            int i = 0;
+            while (i < vector.Length)
+            {
+
+                if (i == 0)
+                {
+                    ShowConectados.Rows[i].Cells[0].Value = "Número de conectados: " + vector[i];
+                }
+                else
+                {
+                    ShowConectados.Rows[i].Cells[0].Value = vector[i];
+                }
+                i++;
+            }
+        }
+
+        private void Desconectar_Click(object sender, EventArgs e)
+        {
+            //Mensaje de desconexión
+            string mensaje = "0/"+username;
+
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            // Nos desconectamos
+            this.BackColor = Color.Lavender;
+            server.Shutdown(SocketShutdown.Both);
+            server.Close();
+            Close();
+        }
+
+        private void Servicios_Click(object sender, EventArgs e)
+        {
+            // Pedir numero de srevicios realizados
+            string mensaje = "6/numservicios";
+
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            servicios_rec.Text = "Número total de servicios: " + mensaje;
         }
     }
 }
