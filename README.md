@@ -19,6 +19,6 @@
   #### V2
       Mecanismos necesarios para garantizar la exclusión mutua. 
 
-        Versión 2 generada por Catalina
+        Versión 2 generada por Sergio
         Versión 2 verificada por Mohamed
-        Versión 2 verificada por Sergio
+        Versión 2 verificada por Catalina
