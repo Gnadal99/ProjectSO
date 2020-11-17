@@ -2,6 +2,7 @@
 
 ### Versión 1
   El cliente debe poder darse de alta, loguearse y realizar las tres consultas acordadas en el grupo. 
+  ##### [Video V1](https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Fscreencast-o-matic.com%2Fwatch%2FcY6UrMsAFq "Video V1")
    
     Versión 1 generada por Gerard
     Versión 1 verificada por Catalina
