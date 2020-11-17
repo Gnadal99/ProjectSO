@@ -14,8 +14,8 @@
   #### V2.1
     Versión concurrente de la versión #1
       Versión 2.1 generada por Catalina
-      Versión 2.1 verificada por Sergio
-      Versión 2.1 soporte por Mohamed
+      Versión 2.1 verificada por Mohamed
+      Versión 2.1 soporte por Sergio
      
   #### V2
       Mecanismos necesarios para garantizar la exclusión mutua. 
