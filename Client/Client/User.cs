@@ -12,10 +12,12 @@ using System.Net.Sockets;
 
 namespace Client
 {
+    
     public partial class User : Form
     {
+        int estado = 0;
         Socket server;
-        int puerto = 9200;
+        int puerto = 50063;
         public User()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace Client
             {
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
-                IPAddress direc = IPAddress.Parse("192.168.56.102");
+                IPAddress direc = IPAddress.Parse("147.83.117.22");
                 IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
 
@@ -73,16 +75,24 @@ namespace Client
                     prin.setUser(user);
                     this.Hide();
                     prin.ShowDialog();
+
+                    estado = prin.getStatus();
+
+                    if (estado == 0)
+
+                    {
+                        mensaje = "0/";
+
+                        msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                        server.Send(msg);
+
+                        // Nos desconectamos
+                        this.BackColor = Color.Gray;
+                        server.Shutdown(SocketShutdown.Both);
+                        server.Close();
+                    }
                     //Mensaje de desconexión
-                    mensaje = "0/";
-
-                    msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    server.Send(msg);
-
-                    // Nos desconectamos
-                    this.BackColor = Color.Gray;
-                    server.Shutdown(SocketShutdown.Both);
-                    server.Close();
+                    
                     this.Close();
                 }
 
@@ -114,7 +124,7 @@ namespace Client
         {
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
+            IPAddress direc = IPAddress.Parse("192.168.56.101");
             IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
 

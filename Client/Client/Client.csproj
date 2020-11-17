@@ -64,6 +64,12 @@
     <Compile Include="HoraFecha.Designer.cs">
       <DependentUpon>HoraFecha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Juego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Juego.Designer.cs">
+      <DependentUpon>Juego.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartidasGanadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoraFecha.resx">
       <DependentUpon>HoraFecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Juego.resx">
+      <DependentUpon>Juego.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartidasGanadas.resx">
       <DependentUpon>PartidasGanadas.cs</DependentUpon>

@@ -15,6 +15,7 @@ namespace Client
 {
     public partial class Principal : Form
     {
+        int estado;
         string ListaConectados;
         Socket server;
         string username;
@@ -32,6 +33,15 @@ namespace Client
         public void setServer(Socket a)   //Se utiliza para pasar transpasar los datos entre formularios
         {
             this.server = a;
+        }
+        public void setStatus (int a)
+        {
+            this.estado = a;
+        }
+        
+        public int getStatus()
+        {
+            return estado;
         }
 
         public void setUser(string a)  
@@ -123,6 +133,7 @@ namespace Client
         private void Desconectar_Click(object sender, EventArgs e)
         {
             //Mensaje de desconexión
+            estado = 1;
             string mensaje = "0/"+username;
 
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -148,6 +159,13 @@ namespace Client
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
             servicios_rec.Text = "Número total de servicios: " + mensaje;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Juego jk = new Juego();
+            jk.ShowDialog();
+
         }
     }
 }

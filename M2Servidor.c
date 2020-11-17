@@ -88,7 +88,7 @@ int Elimina (ListaConectados *lista, char nombre[20]){
 
 void DameConectados (ListaConectados *lista, char conectados[300]){
 	//Pone en un vector los nombres de conectados separados por una bcoma
-	//Primero pone el número de conectados. Ej: 3,Maria,Juan,Pedro
+	//Primero pone el nï¿½mero de conectados. Ej: 3,Maria,Juan,Pedro
 	sprintf (conectados, "%d", lista->num);
 	printf ("%d",lista->num);
 	int i;
@@ -141,7 +141,7 @@ void *AtenderCliente (void *socket)
 	}
 	
 	//Inicializa la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "JUEGO",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "M2JUEGO",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -195,7 +195,7 @@ void *AtenderCliente (void *socket)
 		
 		else if (codigo ==100)
 		{
-			//ID/Contraseña
+			//ID/Contraseï¿½a
 			char nombre_usuario[40];
 			char contrasena [40];
 			char consulta [800];
@@ -238,7 +238,7 @@ void *AtenderCliente (void *socket)
 					int poner = Pon (&miLista2, nombre_usuario, miLista2.num);
 					pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
 					if (poner == 3)
-						printf("Usuario añadido a la lista de conectados. \n");
+						printf("Usuario aï¿½adido a la lista de conectados. \n");
 					else
 						printf("Error al introducir al usuario a la lista de conectados. \n");
 				}
@@ -253,7 +253,7 @@ void *AtenderCliente (void *socket)
 		
 		else if (codigo ==101)
 		{
-			//ID/Contraseña
+			//ID/Contraseï¿½a
 			char nombre_usuario[40];
 			char contrasena [40];
 			char consulta [800];
@@ -546,20 +546,20 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// Establecemos el puerto 
-	serv_adr.sin_port = htons(9200);
+	serv_adr.sin_port = htons(50063);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
 	if (listen(sock_listen, 3) < 0)
 		printf("Error en el Listen");
 	
-	int i;
+	int i=0;
 	int sockets[100];
 	pthread_t thread[100];
 	
 	//Inicializacion de variables globales
 	contador_servicios = 0;
-	miLista2.num =0;
+	miLista2.num = 0;
 	
 	// Bucle infinito
 	for (;;){
@@ -569,5 +569,6 @@ int main(int argc, char *argv[])
 		//sock_conn es el socket que usaremos para este cliente
 		sockets[i] = sock_conn;
 		pthread_create (&thread[i], NULL, AtenderCliente, &sockets[i]);
+		i=i+1;
 	}
 }
