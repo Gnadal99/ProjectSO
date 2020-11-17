@@ -546,7 +546,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// Establecemos el puerto 
-	serv_adr.sin_port = htons(50063);
+	serv_adr.sin_port = htons(50005);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
