@@ -16,6 +16,23 @@ namespace Client
     public partial class PartidasGanadas : Form
     {
         Socket server;
+        string username;
+
+        public void setrespuesta(string a)
+        {
+
+             if (a == "1/NoExist")
+                {
+                    label2.Text = "El jugador " + usernameconsulta.Text + " no existe.";
+                }
+
+                else
+                {
+                    label2.Text = "El jugador " + usernameconsulta.Text + " ha ganado " + a + " partidas.";
+                }
+
+       
+        }
 
         public PartidasGanadas()
         {
@@ -41,12 +58,13 @@ namespace Client
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                //Recibimos la respuesta del servidor
+               
+                /*//Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-                if (mensaje == "1/NoExist")
+                */
+                /* if (mensaje == "1/NoExist")
                 {
                     label2.Text = "El jugador " + usernameconsulta.Text + " no existe.";
                 }
@@ -54,7 +72,7 @@ namespace Client
                 else
                 {
                     label2.Text = "El jugador " + usernameconsulta.Text + " ha ganado " + mensaje + " partidas.";
-                }
+                }*/
             }
         }
     }

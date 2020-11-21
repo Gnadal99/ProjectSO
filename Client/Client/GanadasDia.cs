@@ -22,6 +22,12 @@ namespace Client
             InitializeComponent();
         }
 
+        public void setrespuesta (string a)
+        
+        {
+            label2.Text = "El día " + textBox1.Text + " ganaste " + a + " partidas.";
+        }
+
         public void setName(string a)
         {
             this.username = a;
@@ -41,12 +47,12 @@ namespace Client
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                //Recibimos la respuesta del servidor
+               /*//Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
-                label2.Text = "El día " + textBox1.Text + " ganaste " + mensaje + " partidas.";
+                label2.Text = "El día " + textBox1.Text + " ganaste " + mensaje + " partidas."; */
             }
         }
 

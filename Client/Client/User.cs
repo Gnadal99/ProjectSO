@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Client
 {
@@ -17,10 +18,15 @@ namespace Client
     {
         int estado = 0;
         Socket server;
+        Thread atender; 
         int puerto = 50005;
+        Principal prin; 
         public User()
+
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false; //Necesario para que los elementos de los formularios puedan ser
+            //accedidos desde threads diferentes a los que los crearon
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,6 +61,19 @@ namespace Client
                 }
 
 
+                /////////////////////////////////////////Thread cliente//////////////////////////////////////////////////////////////
+
+
+
+                 //pongo en marcha el thread que atenderá los mensajes del servidor
+                ThreadStart ts = delegate { prin.AtenderServidor(); };
+                atender = new Thread(ts);
+                atender.Start();
+
+
+
+                /////////////////////////////////////////Thread cliente//////////////////////////////////////////////////////////////
+
                 string user = username.Text;
                 string pass = password.Text;
                 string mensaje = "100/" + user + "/" + pass;
@@ -70,7 +89,7 @@ namespace Client
                 if (mensaje == "100/Correct")
                 {
                     MessageBox.Show("Welcome " + user + ".");
-                    Principal prin = new Principal();
+                    prin = new Principal();
                     prin.setServer(server);
                     prin.setUser(user);
                     this.Hide();
@@ -179,9 +198,15 @@ namespace Client
             server.Send(msg);
 
             // Nos desconectamos
+            atender.Abort(); 
             this.BackColor = Color.Gray;
             server.Shutdown(SocketShutdown.Both);
             server.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

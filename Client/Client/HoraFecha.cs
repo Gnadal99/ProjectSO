@@ -17,6 +17,7 @@ namespace Client
     {
         Socket server;
         public HoraFecha()
+
         {
             InitializeComponent();
         }
@@ -31,6 +32,21 @@ namespace Client
 
         }
 
+        public void setrespuesta(string a)
+
+        {
+            if (a == "3/NoExist")
+            {
+                label2.Text = "La partida con el ID: " + IDpartida.Text + " no existe.";
+            }
+
+            else
+            {
+                label2.Text = "La partida fue jugada el " + a + ".";
+            }
+            
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (IDpartida.Text != "")
@@ -40,7 +56,7 @@ namespace Client
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                //Recibimos la respuesta del servidor
+                /*//Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
@@ -53,7 +69,7 @@ namespace Client
                 else
                 {
                     label2.Text = "La partida fue jugada el " + mensaje + ".";
-                }
+                }*/
             }
         }
     }

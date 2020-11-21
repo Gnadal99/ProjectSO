@@ -17,6 +17,7 @@ namespace Client
             InitializeComponent();
         }
        
+
         public void setLista(string Lista2)
         {
             this.Lista = Lista2;
@@ -39,6 +40,11 @@ namespace Client
                 dataGridView1.Rows[0].Cells[i].Value = vector[i];
                 i++;
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
