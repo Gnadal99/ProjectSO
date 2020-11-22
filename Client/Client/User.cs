@@ -18,15 +18,12 @@ namespace Client
     {
         int estado = 0;
         Socket server;
-        Thread atender; 
-        int puerto = 50005;
+        int puerto = 9045;
         Principal prin; 
-        public User()
 
+        public User()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false; //Necesario para que los elementos de los formularios puedan ser
-            //accedidos desde threads diferentes a los que los crearon
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,7 +37,7 @@ namespace Client
             {
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
-                IPAddress direc = IPAddress.Parse("147.83.117.22");
+                IPAddress direc = IPAddress.Parse("192.168.56.101");
                 IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
 
@@ -61,18 +58,6 @@ namespace Client
                 }
 
 
-                /////////////////////////////////////////Thread cliente//////////////////////////////////////////////////////////////
-
-
-
-                 //pongo en marcha el thread que atenderá los mensajes del servidor
-                ThreadStart ts = delegate { prin.AtenderServidor(); };
-                atender = new Thread(ts);
-                atender.Start();
-
-
-
-                /////////////////////////////////////////Thread cliente//////////////////////////////////////////////////////////////
 
                 string user = username.Text;
                 string pass = password.Text;
@@ -198,7 +183,7 @@ namespace Client
             server.Send(msg);
 
             // Nos desconectamos
-            atender.Abort(); 
+            
             this.BackColor = Color.Gray;
             server.Shutdown(SocketShutdown.Both);
             server.Close();

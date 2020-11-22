@@ -15,7 +15,6 @@ namespace Client
     {
         PictureBox jugador;
         PictureBox[] ocupados;
-        PictureBox puntoocupado;
         int i=0;
 
         static int[,] array = new int[80, 40];//[50,20]//this is my array is the base of the game
@@ -76,7 +75,7 @@ namespace Client
             Bitmap image = new Bitmap("Captura.PNG");
             jugador.Image = (Image)image;
 
-            //reset1 line spawn
+            
 
             columnaJugador = 1;
             filaJugador = 35;
@@ -99,15 +98,19 @@ namespace Client
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            /*
-            puntoocupado = new PictureBox();
+            ocupados = new PictureBox[50000];
+
+            PictureBox puntoocupado = new PictureBox();
             puntoocupado.ClientSize = new Size(15, 15);
-            Bitmap image = new Bitmap("Captura.PNG");
-            puntoocupado.Image = (Image)image;
             puntoocupado.Location = y1;
+            //puntoocupado.SizeMode = PictureBoxSizeMode.StretchImage;
+            Bitmap image2 = new Bitmap("Captura.PNG");
+            puntoocupado.Image = (Image)image2;
+
+            panel1.Controls.Add(puntoocupado);
 
             ocupados[i] = puntoocupado;
-            */
+            
 
             if (direccionJugador == arriba)
             {

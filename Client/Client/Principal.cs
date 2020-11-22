@@ -10,6 +10,7 @@ using System.Data.OleDb;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Channels;
+using System.Threading;
 
 namespace Client
 {
@@ -22,15 +23,20 @@ namespace Client
         PartidasGanadas pg;
         HoraFecha hf;
         GanadasDia gd;
-        Ganadores10min gm; 
+        Ganadores10min gm;
+        Thread atender;
 
         public Principal()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            ThreadStart ts = delegate { AtenderServidor(); };
+            atender = new Thread(ts);
+            atender.Start();
             label1.Text = "Usuario: " + username;
         }
 
@@ -65,7 +71,7 @@ namespace Client
                 server.Receive(msg2);
                 string[] trozos = Encoding.ASCII.GetString(msg2).Split('/');
                 int codigo = Convert.ToInt32(trozos[0]);
-                string mensaje = mensaje = trozos[1].Split('\0')[0];
+                string mensaje = trozos[1].Split('\0')[0];
 
                 switch (codigo)
                 {
@@ -93,10 +99,10 @@ namespace Client
                         gd.setrespuesta(mensaje);
                         break;
 
-                    case 27: // Respuesta a lista de conectados 
+                    case 7: // Respuesta a lista de conectados 
 
                         string[] vector = new string[5];
-                        vector = ListaConectados.Split(',');
+                        vector = mensaje.Split(',');
 
                         ShowConectados.RowHeadersVisible = false;
                         ShowConectados.ColumnHeadersVisible = false;
@@ -154,14 +160,7 @@ namespace Client
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
-            /*//Recibimos la respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-       
-            gm.setLista(mensaje);
-            gm.ShowDialog();
-            Ganadores10min gm = new Ganadores10min();*/
+            
         }
 
         private void horaYFechaDeUnaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -179,45 +178,7 @@ namespace Client
             gd.ShowDialog();
         }
 
-        private void MostrarConectados_Click(object sender, EventArgs e)
-        {
-
-            string mensaje = "27/vacio";
-
-            // Enviamos al servidor el nombre tecleado
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            //Recibimos la respuesta del servidor
-            /* byte[] msg2 = new byte[80];
-             server.Receive(msg2);
-             ListaConectados = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-             string[] vector = new string[5];
-             vector = ListaConectados.Split(',');
-
-             ShowConectados.RowHeadersVisible = false;
-             ShowConectados.ColumnHeadersVisible = false;
-             ShowConectados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-             ShowConectados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-             ShowConectados.RowCount = vector.Length;
-             ShowConectados.ColumnCount = 1;
-
-             int i = 0;
-             while (i < vector.Length)
-             {
-
-                 if (i == 0)
-                 {
-                     ShowConectados.Rows[i].Cells[0].Value = "Número de conectados: " + vector[i];
-                 }
-                 else
-                 {
-                     ShowConectados.Rows[i].Cells[0].Value = vector[i];
-                 }
-                 i++;
-             }*/
-        }
+       
 
         private void Desconectar_Click(object sender, EventArgs e)
         {
@@ -229,27 +190,14 @@ namespace Client
             server.Send(msg);
 
             // Nos desconectamos
+            atender.Abort();
             this.BackColor = Color.Lavender;
             server.Shutdown(SocketShutdown.Both);
             server.Close();
             Close();
         }
 
-        /*private void Servicios_Click(object sender, EventArgs e)
-        {
-            // Pedir numero de srevicios realizados
-            string mensaje = "6/numservicios";
-
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            //Recibimos la respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            servicios_rec.Text = "Número total de servicios: " + mensaje;
-        }
-        */
+       
         private void button1_Click(object sender, EventArgs e)
         {
             Juego jk = new Juego();
@@ -257,19 +205,8 @@ namespace Client
 
         }
 
-        private void ShowConectados_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+      
 
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Servicios_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
