@@ -24,7 +24,7 @@
         Versión 2 soporte por Mohamed
         
 ### Versión 3
-##### [Video V3]( "Video V3")
+##### [Video V3](https://drive.google.com/file/d/1CTPPMTb_niyR0Sr4LE6BgytKAEsEtaXk/view?usp=sharing "Video V3")
 
         Añadir threads al cliente.
           Versión 3 generada por Mohamed
