@@ -19,11 +19,29 @@ typedef struct {
 	int num;
 }ListaConectados;
 
+typedef struct{
+	Conectado jugador;
+	char estado[20];
+}TJugador;
+
+typedef struct{
+	TJugador jugadores[4];
+	int num;
+	char estado[20];
+}TPartida;
+
+typedef struct{
+	TPartida partidas[10];
+	int num;
+}TPartidas;
+
 //Declaracion de variables globales
 int contador_servicios;
 int i;
 int sockets[100];
 ListaConectados miLista2;
+TPartidas listaPartidas;
+
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 //Funciones
@@ -123,6 +141,109 @@ void DameTodosSockets (ListaConectados *lista, char conectados[300], char socket
 }
 
 
+int CrearSala (TPartidas *listaPartidas, ListaConectados *lista, char username[20]){
+	if (listaPartidas->num<10)
+	{
+		strcpy(listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].jugador.nombre,username);
+		listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].jugador.socket = DameSocket(lista,username);
+		strcpy(listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].estado,"Aceptado");
+		listaPartidas->partidas[listaPartidas->num].num = listaPartidas->partidas[listaPartidas->num].num +1;
+		strcpy(listaPartidas->partidas[listaPartidas->num].estado,"Pendiente");
+		
+		listaPartidas->num = listaPartidas->num +1;
+		return listaPartidas->num-1;
+	}
+	else
+		return -1;
+}
+int AnadirInvitado (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
+	int s_invitado = DameSocket(lista,username);
+	if (listaPartidas->num<numSala)
+		return -1;
+	else{
+		if(listaPartidas->partidas[numSala].num<4){
+			if (strcmp(listaPartidas->partidas[numSala].estado,"Pendiente")==0){
+				strcpy(listaPartidas->partidas[numSala].jugadores[listaPartidas->partidas[numSala].num].jugador.nombre,username);
+				listaPartidas->partidas[numSala].jugadores[listaPartidas->partidas[numSala].num].jugador.socket = s_invitado;
+				strcpy(listaPartidas->partidas[numSala].jugadores[listaPartidas->partidas[numSala].num].estado,"Invitado");
+				listaPartidas->partidas[numSala].num = listaPartidas->partidas[numSala].num + 1;
+				return 0;
+			}
+			else
+				return -2;
+		}
+			
+		else
+			return -3;
+	}
+	
+	
+	
+	
+	
+}
+int Aceptar (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
+	if (strcmp(listaPartidas->partidas[numSala].estado,"Pendiente")==0)
+	{
+		int il = 0;
+		while (il<listaPartidas->partidas[numSala].num)
+		{
+			if (strcmp(listaPartidas->partidas[numSala].jugadores[il].jugador.nombre,username)==0)
+			{
+				strcpy(listaPartidas->partidas[numSala].jugadores[il].estado,"Aceptado");
+				return 0;
+			}
+			il++;
+		}
+		return -1;
+	}
+	else
+		return -1;
+}
+int Rechazar (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
+	if (strcmp(listaPartidas->partidas[numSala].estado,"Pendiente")==0)
+	{
+		int il = 0;
+		int encontrado = 0;
+		while (il<listaPartidas->partidas[numSala].num)
+		{
+			if (encontrado==0)
+			{
+				if (strcmp(listaPartidas->partidas[numSala].jugadores[il].jugador.nombre,username)==0)
+				{
+					encontrado==1;
+				}
+			}
+			else
+				listaPartidas->partidas[numSala].jugadores[il-1] = listaPartidas->partidas[numSala].jugadores[il];
+			il++;
+		}
+		listaPartidas->partidas[numSala].num--;
+		return 0;
+	}
+	else
+		return -1;
+}
+int EliminarJugador (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
+	int il = 0;
+	int encontrado = 0;
+	while (il<listaPartidas->partidas[numSala].num)
+	{
+		if (encontrado==0)
+		{
+			if (strcmp(listaPartidas->partidas[numSala].jugadores[il].jugador.nombre,username)==0)
+			{
+				encontrado==1;
+			}
+		}
+		else
+			listaPartidas->partidas[numSala].jugadores[il-1] = listaPartidas->partidas[numSala].jugadores[il];
+		il++;
+	}
+	listaPartidas->partidas[numSala].num--;
+	return 0;
+	
+}
 void *AtenderCliente (void *socket)
 {
 	int sock_conn;
@@ -195,7 +316,7 @@ void *AtenderCliente (void *socket)
 			terminar=1;
 		}
 		
-		else if (codigo ==100)
+		else if (codigo ==100) //Iniciar sesion
 		{
 			//ID/Contrase�a
 			char nombre_usuario[40];
@@ -237,7 +358,7 @@ void *AtenderCliente (void *socket)
 				{
 					sprintf (respuesta,"100/Correct");
 					pthread_mutex_lock(&mutex); //No interrumpir
-					int poner = Pon (&miLista2, nombre_usuario, miLista2.num);
+					int poner = Pon (&miLista2, nombre_usuario, sock_conn);
 					pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
 					if (poner == 3)
 					{
@@ -256,7 +377,7 @@ void *AtenderCliente (void *socket)
 			printf ("%s",respuesta);
 		}
 		
-		else if (codigo ==101)
+		else if (codigo ==101) //Registrarse
 		{
 			//ID/Contrase�a
 			char nombre_usuario[40];
@@ -501,7 +622,142 @@ void *AtenderCliente (void *socket)
 		
 		
 
-		if (codigo != 0)
+		else if (codigo == 20) //Crear sala
+		{
+			char username[20];
+			t = strtok( NULL, "/");
+			strcpy (username, t);
+			int err = CrearSala(&listaPartidas,&miLista2,username);
+			if (err != -1)
+				sprintf(respuesta,"20/correct,%d",err);
+			else
+				sprintf(respuesta,"20/incorrect");
+			
+		}
+		else if (codigo ==21) //Invitar
+		{
+			int numSala;
+			char nombre_invitado[20];
+			char nombre_host[20];
+			
+			t = strtok (NULL, "/");
+			numSala =  atoi (t);
+			
+			t = strtok(NULL,"/");
+			strcpy(nombre_host,t);
+			
+			t = strtok(NULL,"/");
+			strcpy(nombre_invitado,t);
+			
+			int er = AnadirInvitado(&listaPartidas,&miLista2,nombre_invitado,numSala);
+			if (er==0)
+			{
+				char resp[300];
+				sprintf(resp,"21/correct,%s",nombre_invitado);
+				
+				char nombres[100];
+				strcpy(nombres, listaPartidas.partidas[numSala].jugadores[0].jugador.nombre);
+				int l;
+				for (l=1;l<listaPartidas.partidas[numSala].num;l++)
+				{
+					
+					sprintf(nombres,"%s,%s",nombres,listaPartidas.partidas[numSala].jugadores[l].jugador.nombre);
+					
+				}
+				
+				int j;
+				for (j=0;j<listaPartidas.partidas[numSala].num;j++)
+				{
+					if (strcmp(listaPartidas.partidas[numSala].jugadores[j].estado,"Aceptado")==0)
+						write(DameSocket(&miLista2,listaPartidas.partidas[numSala].jugadores[j].jugador.nombre), resp, strlen(resp));
+				}
+				
+				char invitacion [310];
+				sprintf(invitacion, "22/%d,%s,%s",numSala,nombre_host,nombres);
+				write(DameSocket(&miLista2,nombre_invitado), invitacion, strlen(invitacion));
+			}
+				
+			
+			else if (er==-2) //la partida no existe
+			{
+				sprintf(respuesta,"21/noexist,%s",nombre_invitado);
+			}
+			else if (er==-1)
+			{
+				sprintf(respuesta,"21/llena,%s",nombre_invitado);
+			}
+			
+			
+		}
+		else if (codigo == 22) //responder invitacion
+		{
+			int nsala;
+			t=strtok(NULL,"/");
+			nsala = atoi(t);
+			
+			char nom[20];
+			t=strtok(NULL,"/");
+			strcpy(nom,t);
+			
+			t=strtok(NULL,"/");
+			
+			if (strcmp(t,"accept")==0)
+			{
+				int er = Aceptar(&listaPartidas,&miLista2,nom,nsala);
+				if (er == 0)
+				{
+					
+					char noti[200];
+					
+					
+					sprintf(noti, "23/%s,accept",nom);
+					
+					int j;
+					for (j=0; j<listaPartidas.partidas[nsala].num; j++)
+						if (listaPartidas.partidas[nsala].jugadores[j].jugador.socket != sock_conn)
+							write (listaPartidas.partidas[nsala].jugadores[j].jugador.socket, noti, strlen(noti));
+					
+				}
+					
+			}
+			if (strcmp(t,"reject")==0)
+			{
+				int er = Rechazar(&listaPartidas,&miLista2,nom,nsala);
+				
+				char noti[200];
+				
+				sprintf(noti, "23/%s,reject",nom);
+				
+				int j;
+				for (j=0; j<listaPartidas.partidas[nsala].num; j++)
+					if (listaPartidas.partidas[nsala].jugadores[j].jugador.socket != sock_conn)
+						write (listaPartidas.partidas[nsala].jugadores[j].jugador.socket, noti, strlen(noti));
+				
+				
+			}
+		}
+		else if (codigo==24)//Salir de la sala
+		{
+			int nusala;
+			t = strtok(NULL,"/");
+			nusala = atoi(t);
+			
+			char nm[20];
+			t=strtok(NULL,"/");
+			strcpy(nm,t);
+			
+			EliminarJugador(&listaPartidas,&miLista2,nm,nusala);
+			
+			char resp[50];
+			sprintf(resp,"24/%s",nm);
+			int k;
+			for (k=0;k<listaPartidas.partidas[nusala].num;k++)
+			{
+				write(listaPartidas.partidas[nusala].jugadores[k].jugador.socket, resp,strlen(resp));
+			}
+			
+		}
+		if ((codigo != 0)&&(codigo != 21)&&(codigo != 22)&&(codigo != 24))
 		{
 			// Enviamos respuesta
 			printf("\nrespuesta: %s\n",respuesta);
@@ -555,7 +811,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// Establecemos el puerto 
-	serv_adr.sin_port = htons(50005);
+	serv_adr.sin_port = htons(9002);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	

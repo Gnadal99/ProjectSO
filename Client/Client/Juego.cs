@@ -101,7 +101,7 @@ namespace Client
             ocupados = new PictureBox[50000];
 
             PictureBox puntoocupado = new PictureBox();
-            puntoocupado.ClientSize = new Size(15, 15);
+            puntoocupado.ClientSize = new Size(5, 5);
             puntoocupado.Location = y1;
             //puntoocupado.SizeMode = PictureBoxSizeMode.StretchImage;
             Bitmap image2 = new Bitmap("Captura.PNG");
