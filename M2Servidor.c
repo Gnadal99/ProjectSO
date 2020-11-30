@@ -736,7 +736,7 @@ void *AtenderCliente (void *socket)
 				
 			}
 		}
-		else if (codigo==24)
+		else if (codigo==24)//Salir de la sala
 		{
 			int nusala;
 			t = strtok(NULL,"/");
@@ -811,7 +811,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// Establecemos el puerto 
-	serv_adr.sin_port = htons(9225);
+	serv_adr.sin_port = htons(9002);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	

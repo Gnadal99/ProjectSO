@@ -179,7 +179,7 @@ namespace Client
                         }
                         break;
 
-                    case 22: //invitacion
+                    case 22: //Invitacion
                         string[] vector4 = new string[6];
                         vector4 = mensaje.Split(',');
 
@@ -235,6 +235,7 @@ namespace Client
                         if (vector5[1] == "reject")
                         {
                             int it = 0;
+                            MessageBox.Show("El usuario "+vector5[0]+" ha rechazado la solicitud.");
                             while (it < 4)
                             {
                                 if (Convert.ToString(Sala.Rows[it].Cells[0].Value) == vector5[0])
@@ -249,7 +250,7 @@ namespace Client
 
                         break;
 
-                    case 24:
+                    case 24://Salir de la sala
                         int il = 0;
                         bool encontrado = false;
                         while (il < 4)
