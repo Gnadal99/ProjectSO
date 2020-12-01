@@ -33,5 +33,5 @@
 
         Añadir la posibilidad de invitar a amigos a jugar y que estos acepten o no. Para eso usamos una sala.
           Versión 4 generada por Gerard
-          Versión 4 verificada por Catalina
+          Versión 4 verificada y video por Catalina
         
