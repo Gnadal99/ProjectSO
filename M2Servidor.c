@@ -31,7 +31,7 @@ typedef struct{
 }TPartida;
 
 typedef struct{
-	TPartida partidas[10];
+	TPartida partidas[100];
 	int num;
 }TPartidas;
 
@@ -142,7 +142,7 @@ void DameTodosSockets (ListaConectados *lista, char conectados[300], char socket
 
 
 int CrearSala (TPartidas *listaPartidas, ListaConectados *lista, char username[20]){
-	if (listaPartidas->num<10)
+	if (listaPartidas->num<100)
 	{
 		strcpy(listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].jugador.nombre,username);
 		listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].jugador.socket = DameSocket(lista,username);
@@ -153,8 +153,23 @@ int CrearSala (TPartidas *listaPartidas, ListaConectados *lista, char username[2
 		listaPartidas->num = listaPartidas->num +1;
 		return listaPartidas->num-1;
 	}
-	else
+	else{
+		int s;
+		for (s=0; s<100;s++){
+			if (strcmp(listaPartidas->partidas[s].estado,"Cancelada")==0){
+				strcpy(listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].jugador.nombre,username);
+				listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].jugador.socket = DameSocket(lista,username);
+				strcpy(listaPartidas->partidas[listaPartidas->num].jugadores[listaPartidas->partidas[listaPartidas->num].num].estado,"Aceptado");
+				listaPartidas->partidas[listaPartidas->num].num = listaPartidas->partidas[listaPartidas->num].num +1;
+				strcpy(listaPartidas->partidas[listaPartidas->num].estado,"Pendiente");
+				
+				return s;
+			}
+				
+				
+		}
 		return -1;
+	}
 }
 int AnadirInvitado (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
 	int s_invitado = DameSocket(lista,username);
@@ -224,6 +239,19 @@ int Rechazar (TPartidas *listaPartidas, ListaConectados *lista, char username[20
 	else
 		return -1;
 }
+
+int EliminarPartida (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
+	int j;
+	strcpy(listaPartidas->partidas[numSala].estado,"Cancelada");
+	for (j=0;j<listaPartidas->partidas[numSala].num;j++)
+	{
+		char resp[200];
+		sprintf(resp,"25/%d",numSala);
+		write(DameSocket(&miLista2,listaPartidas->partidas[numSala].jugadores[j].jugador.nombre), resp, strlen(resp));
+	}
+	return 0;
+}
+
 int EliminarJugador (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
 	int il = 0;
 	int encontrado = 0;
@@ -234,9 +262,12 @@ int EliminarJugador (TPartidas *listaPartidas, ListaConectados *lista, char user
 			if (strcmp(listaPartidas->partidas[numSala].jugadores[il].jugador.nombre,username)==0)
 			{
 				encontrado==1;
+				if (il==0){
+					EliminarPartida(listaPartidas,lista,username,numSala);
+				}
 			}
 		}
-		else
+		if (encontrado == 1)
 			listaPartidas->partidas[numSala].jugadores[il-1] = listaPartidas->partidas[numSala].jugadores[il];
 		il++;
 	}
@@ -244,6 +275,8 @@ int EliminarJugador (TPartidas *listaPartidas, ListaConectados *lista, char user
 	return 0;
 	
 }
+
+
 void *AtenderCliente (void *socket)
 {
 	int sock_conn;
@@ -264,7 +297,7 @@ void *AtenderCliente (void *socket)
 	}
 	
 	//Inicializa la conexion
-	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "M2JUEGO",0, NULL, 0);
+	conn = mysql_real_connect (conn, "localhost","root", "mysql", "JUEGO",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -627,7 +660,9 @@ void *AtenderCliente (void *socket)
 			char username[20];
 			t = strtok( NULL, "/");
 			strcpy (username, t);
+			pthread_mutex_lock(&mutex);
 			int err = CrearSala(&listaPartidas,&miLista2,username);
+			pthread_mutex_unlock(&mutex);
 			if (err != -1)
 				sprintf(respuesta,"20/correct,%d",err);
 			else
@@ -648,8 +683,9 @@ void *AtenderCliente (void *socket)
 			
 			t = strtok(NULL,"/");
 			strcpy(nombre_invitado,t);
-			
+			pthread_mutex_lock(&mutex);
 			int er = AnadirInvitado(&listaPartidas,&miLista2,nombre_invitado,numSala);
+			pthread_mutex_unlock(&mutex);
 			if (er==0)
 			{
 				char resp[300];
@@ -703,7 +739,9 @@ void *AtenderCliente (void *socket)
 			
 			if (strcmp(t,"accept")==0)
 			{
+				pthread_mutex_lock(&mutex);
 				int er = Aceptar(&listaPartidas,&miLista2,nom,nsala);
+				pthread_mutex_unlock(&mutex);
 				if (er == 0)
 				{
 					
@@ -722,7 +760,9 @@ void *AtenderCliente (void *socket)
 			}
 			if (strcmp(t,"reject")==0)
 			{
+				pthread_mutex_lock(&mutex);
 				int er = Rechazar(&listaPartidas,&miLista2,nom,nsala);
+				pthread_mutex_unlock(&mutex);
 				
 				char noti[200];
 				
@@ -736,7 +776,7 @@ void *AtenderCliente (void *socket)
 				
 			}
 		}
-		else if (codigo==24)//Salir de la sala
+		else if (codigo==24)
 		{
 			int nusala;
 			t = strtok(NULL,"/");
@@ -746,7 +786,9 @@ void *AtenderCliente (void *socket)
 			t=strtok(NULL,"/");
 			strcpy(nm,t);
 			
+			pthread_mutex_lock(&mutex);
 			EliminarJugador(&listaPartidas,&miLista2,nm,nusala);
+			pthread_mutex_unlock(&mutex);
 			
 			char resp[50];
 			sprintf(resp,"24/%s",nm);
@@ -811,7 +853,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// Establecemos el puerto 
-	serv_adr.sin_port = htons(9002);
+	serv_adr.sin_port = htons(9235);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	

@@ -147,7 +147,7 @@ namespace Client
                             Sala.Rows[miemSala].Cells[0].Value = username;
                             Sala.Rows[miemSala].Cells[1].Value = "Aceptada";
                             miemSala++;
-                            CrearSala.Text = "Sala creada";
+                            CrearSala.Text = "Estas en sala";
 
                         }
                         else
@@ -182,38 +182,47 @@ namespace Client
                     case 22: //Invitacion
                         string[] vector4 = new string[6];
                         vector4 = mensaje.Split(',');
-
-                        DialogResult result = MessageBox.Show("El jugador "+vector4[1] + " te ha invitado a jugar, aceptas?", "Invitacion", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.Yes)
+                        if (CrearSala.Text == "Crear sala")
                         {
-                            numSala = Convert.ToInt32(vector4[0]);
-                            mensaje = "22/" + Convert.ToString(numSala) + "/" + username + "/" + "accept";
-                            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                            server.Send(msg);
-
-                            label4.Text = "Propietario: " + vector4[1];
-                            Sala.RowCount = 4;
-
-                            int l = 0;
-                            while (l+2<vector4.Length)
+                            DialogResult result = MessageBox.Show("El jugador " + vector4[1] + " te ha invitado a jugar, aceptas?", "Invitacion", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
                             {
-                                if (vector4[l]!=null)
+                                numSala = Convert.ToInt32(vector4[0]);
+                                mensaje = "22/" + Convert.ToString(numSala) + "/" + username + "/" + "accept";
+                                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                                server.Send(msg);
+
+                                label4.Text = "Propietario: " + vector4[1];
+                                Sala.RowCount = 4;
+
+                                int l = 0;
+                                while (l + 2 < vector4.Length)
                                 {
-                                    Sala.Rows[miemSala].Cells[0].Value = vector4[l+2];
-                                    Sala.Rows[miemSala].Cells[1].Value = "Aceptado";
-                                    miemSala++;
+                                    if (vector4[l] != null)
+                                    {
+                                        Sala.Rows[miemSala].Cells[0].Value = vector4[l + 2];
+                                        Sala.Rows[miemSala].Cells[1].Value = "Aceptado";
+                                        miemSala++;
+                                    }
+                                    l++;
                                 }
-                                l++;
+                                CrearSala.Text = "Estas en sala";
+                            }
+                            else
+                            {
+                                numSala =0;
+                                mensaje = "22/" + vector4[0] + "/" + username + "/" + "reject";
+                                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                                server.Send(msg);
                             }
                         }
                         else
                         {
-                            numSala = Convert.ToInt32(vector4[0]);
-                            mensaje = "22/" + Convert.ToString(numSala) + "/" + username + "/" + "reject";
+                            numSala =0;
+                            mensaje = "22/" + vector4[0] + "/" + username + "/" + "reject";
                             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                             server.Send(msg);
                         }
-
                         break;
 
                     case 23: //acepta o no invitacion
@@ -222,29 +231,29 @@ namespace Client
 
                         if (vector5[1] == "accept")
                         {
-                            int it = 0;
-                            while (it < 4)
+                            int ip = 0;
+                            while (ip < 4)
                             {
-                                if (Convert.ToString(Sala.Rows[it].Cells[0].Value) == vector5[0])
+                                if (Convert.ToString(Sala.Rows[ip].Cells[0].Value) == vector5[0])
                                 {
-                                    Sala.Rows[it].Cells[1].Value = "Aceptado";
+                                    Sala.Rows[ip].Cells[1].Value = "Aceptado";
                                 }
-                                it++;
+                                ip++;
                             }
                         }
                         if (vector5[1] == "reject")
                         {
-                            int it = 0;
+                            int ip = 0;
                             MessageBox.Show("El usuario "+vector5[0]+" ha rechazado la solicitud.");
-                            while (it < 4)
+                            while (ip < 4)
                             {
-                                if (Convert.ToString(Sala.Rows[it].Cells[0].Value) == vector5[0])
+                                if (Convert.ToString(Sala.Rows[ip].Cells[0].Value) == vector5[0])
                                 {
-                                    Sala.Rows[it].Cells[0].Value = "";
-                                    Sala.Rows[it].Cells[1].Value = "";
+                                    Sala.Rows[ip].Cells[0].Value = "";
+                                    Sala.Rows[ip].Cells[1].Value = "";
                                     miemSala--;
                                 }
-                                it++;
+                                ip++;
                             }
                         }
 
@@ -272,6 +281,20 @@ namespace Client
                         }
                         Sala.Rows[3].Cells[0].Value = "";
                         Sala.Rows[3].Cells[1].Value = "";
+                        break;
+
+                    case 25: //Se cierra sala
+                        int it = 0;
+                        CrearSala.Text = "Crear sala";
+                        label4.Text = "No estás en ninguna sala";
+                        while (it < 4)
+                        {
+                            Sala.Rows[it].Cells[0].Value = "";
+                            Sala.Rows[it].Cells[1].Value = "";
+                            miemSala--;
+                            it++;
+                        }
+                        miemSala = 0;
                         break;
 
                 }
@@ -370,19 +393,24 @@ namespace Client
 
         private void SalirSala_Click(object sender, EventArgs e)
         {
-            string mensaje = "24/" + Convert.ToString(numSala) + "/" + username;
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-            label4.Text = "No estás en ninguna sala";
-            int it = 0;
-            while (it < 4)
+            if (CrearSala.Text == "Estas en sala")
             {
-                Sala.Rows[it].Cells[0].Value = "";
-                Sala.Rows[it].Cells[1].Value = "";
-                miemSala--;
-                it++;
+                CrearSala.Text = "Crear sala";
+                string mensaje = "24/" + Convert.ToString(numSala) + "/" + username;
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                label4.Text = "No estás en ninguna sala";
+                int it = 0;
+                while (it < 4)
+                {
+                    Sala.Rows[it].Cells[0].Value = "";
+                    Sala.Rows[it].Cells[1].Value = "";
+                    miemSala--;
+                    it++;
+                }
+                miemSala = 0;
             }
-            miemSala = 0;
+            
         }
     }
 }
