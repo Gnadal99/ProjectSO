@@ -340,6 +340,26 @@ void *AtenderCliente (void *socket)
 				strcpy (nombre_usuario, t);
 				pthread_mutex_lock(&mutex); //No interrumpir
 				int eliminar = Elimina (&miLista2, nombre_usuario);
+				int j;
+				for (j=0;j<listaPartidas.num;j++)
+				{
+					int k;
+					for (k=0;k<listaPartidas.partidas[j].num;k++)
+					{
+						if (strcmp(listaPartidas.partidas[j].jugadores[k].jugador.nombre,nombre_usuario)==0)
+						{
+							EliminarJugador(&listaPartidas,&miLista2,nombre_usuario,j);
+							int l;
+							for (l=0;l<listaPartidas.partidas[j].num;l++)
+							{
+								
+								char resp[50];
+								sprintf(resp,"24/%s",nombre_usuario);
+								write(listaPartidas.partidas[j].jugadores[l].jugador.socket, resp,strlen(resp));
+							}
+						}
+					}
+				}
 				pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
 				if (eliminar==0)
 					printf("Usuario eliminado de la lista de conectados. \n");
@@ -776,7 +796,7 @@ void *AtenderCliente (void *socket)
 				
 			}
 		}
-		else if (codigo==24)
+		else if (codigo==24) //salir sala
 		{
 			int nusala;
 			t = strtok(NULL,"/");
