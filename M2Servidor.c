@@ -41,7 +41,7 @@ int i;
 int sockets[100];
 ListaConectados miLista2;
 TPartidas listaPartidas;
-
+ListaConectados ListaChat;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 //Funciones
@@ -164,13 +164,12 @@ int CrearSala (TPartidas *listaPartidas, ListaConectados *lista, char username[2
 				strcpy(listaPartidas->partidas[listaPartidas->num].estado,"Pendiente");
 				
 				return s;
-			}
-				
-				
+			}	
 		}
 		return -1;
 	}
 }
+
 int AnadirInvitado (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
 	int s_invitado = DameSocket(lista,username);
 	if (listaPartidas->num<numSala)
@@ -191,12 +190,8 @@ int AnadirInvitado (TPartidas *listaPartidas, ListaConectados *lista, char usern
 		else
 			return -3;
 	}
-	
-	
-	
-	
-	
 }
+
 int Aceptar (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
 	if (strcmp(listaPartidas->partidas[numSala].estado,"Pendiente")==0)
 	{
@@ -215,6 +210,7 @@ int Aceptar (TPartidas *listaPartidas, ListaConectados *lista, char username[20]
 	else
 		return -1;
 }
+
 int Rechazar (TPartidas *listaPartidas, ListaConectados *lista, char username[20], int numSala){
 	if (strcmp(listaPartidas->partidas[numSala].estado,"Pendiente")==0)
 	{
@@ -273,9 +269,7 @@ int EliminarJugador (TPartidas *listaPartidas, ListaConectados *lista, char user
 	}
 	listaPartidas->partidas[numSala].num--;
 	return 0;
-	
 }
-
 
 void *AtenderCliente (void *socket)
 {
@@ -340,6 +334,7 @@ void *AtenderCliente (void *socket)
 				strcpy (nombre_usuario, t);
 				pthread_mutex_lock(&mutex); //No interrumpir
 				int eliminar = Elimina (&miLista2, nombre_usuario);
+				Elimina (&ListaChat, nombre_usuario);
 				int j;
 				for (j=0;j<listaPartidas.num;j++)
 				{
@@ -371,7 +366,7 @@ void *AtenderCliente (void *socket)
 		
 		else if (codigo ==100) //Iniciar sesion
 		{
-			//ID/Contrase�a
+			//ID/Contrasena
 			char nombre_usuario[40];
 			char contrasena [40];
 			char consulta [800];
@@ -432,7 +427,7 @@ void *AtenderCliente (void *socket)
 		
 		else if (codigo ==101) //Registrarse
 		{
-			//ID/Contrase�a
+			//ID/Contrasena
 			char nombre_usuario[40];
 			char contrasena [40];
 			char consulta [800];
@@ -628,8 +623,6 @@ void *AtenderCliente (void *socket)
 
 		}
 		
-		
-		
 		else if (codigo == 4)
 		{
 			MYSQL_RES *resultado;
@@ -673,8 +666,6 @@ void *AtenderCliente (void *socket)
 			
 		}
 		
-		
-
 		else if (codigo == 20) //Crear sala
 		{
 			char username[20];
@@ -689,6 +680,7 @@ void *AtenderCliente (void *socket)
 				sprintf(respuesta,"20/incorrect");
 			
 		}
+		
 		else if (codigo ==21) //Invitar
 		{
 			int numSala;
@@ -742,9 +734,8 @@ void *AtenderCliente (void *socket)
 			{
 				sprintf(respuesta,"21/llena,%s",nombre_invitado);
 			}
-			
-			
 		}
+		
 		else if (codigo == 22) //responder invitacion
 		{
 			int nsala;
@@ -754,7 +745,6 @@ void *AtenderCliente (void *socket)
 			char nom[20];
 			t=strtok(NULL,"/");
 			strcpy(nom,t);
-			
 			t=strtok(NULL,"/");
 			
 			if (strcmp(t,"accept")==0)
@@ -764,19 +754,14 @@ void *AtenderCliente (void *socket)
 				pthread_mutex_unlock(&mutex);
 				if (er == 0)
 				{
-					
 					char noti[200];
-					
-					
 					sprintf(noti, "23/%s,accept",nom);
-					
 					int j;
 					for (j=0; j<listaPartidas.partidas[nsala].num; j++)
 						if (listaPartidas.partidas[nsala].jugadores[j].jugador.socket != sock_conn)
 							write (listaPartidas.partidas[nsala].jugadores[j].jugador.socket, noti, strlen(noti));
 					
-				}
-					
+				}	
 			}
 			if (strcmp(t,"reject")==0)
 			{
@@ -792,10 +777,10 @@ void *AtenderCliente (void *socket)
 				for (j=0; j<listaPartidas.partidas[nsala].num; j++)
 					if (listaPartidas.partidas[nsala].jugadores[j].jugador.socket != sock_conn)
 						write (listaPartidas.partidas[nsala].jugadores[j].jugador.socket, noti, strlen(noti));
-				
-				
+			
 			}
 		}
+		
 		else if (codigo==24) //salir sala
 		{
 			int nusala;
@@ -819,11 +804,47 @@ void *AtenderCliente (void *socket)
 			}
 			
 		}
-		if ((codigo != 0)&&(codigo != 21)&&(codigo != 22)&&(codigo != 24))
+		
+		else if (codigo==25)//Enviar mensaje
+		{
+			char frase[100];
+			char notificacion [310];
+			char nombre_usuario[40];
+			t = strtok( NULL, "/");
+			strcpy (nombre_usuario, t);
+			t = strtok (NULL, "/");
+			strcpy (frase, t);
+			sprintf(notificacion, "253/%s/%s", nombre_usuario ,frase);
+			int j;
+			for (j=0; j<ListaChat.num; j++)
+				write (ListaChat.conectados[j].socket, notificacion, strlen(notificacion));
+		}
+		
+		else if (codigo==26)//Activos en el chat
+		{
+			char nombre_usuario[40];
+			t = strtok( NULL, "/");
+			strcpy (nombre_usuario, t);
+			pthread_mutex_lock(&mutex); //No interrumpir
+			int poner = Pon (&ListaChat, nombre_usuario, sock_conn);
+			pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
+			
+		}
+		
+		else if (codigo==27)//Desactivados del chat
+		{
+			char nombre_usuario[40];
+			t = strtok( NULL, "/");
+			strcpy (nombre_usuario, t);
+			pthread_mutex_lock(&mutex); //No interrumpir
+			int eliminar = Elimina (&ListaChat, nombre_usuario);
+			pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
+		}
+		
+		if ((codigo != 0)&&(codigo != 21)&&(codigo != 22)&&(codigo != 24)&&(codigo != 25)&&(codigo != 26)&&(codigo != 27))
 		{
 			// Enviamos respuesta
 			printf("\nrespuesta: %s\n",respuesta);
-			
 			write (sock_conn, respuesta, strlen(respuesta));
 		}
 		
@@ -873,7 +894,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// Establecemos el puerto 
-	serv_adr.sin_port = htons(9235);
+	serv_adr.sin_port = htons(9200);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	
@@ -887,6 +908,7 @@ int main(int argc, char *argv[])
 	//Inicializacion de variables globales
 	contador_servicios = 0;
 	miLista2.num = 0;
+	ListaChat.num = 0;
 	
 	// Bucle infinito
 	for (;;){

@@ -69,24 +69,15 @@ namespace Client
         {
             jugador = new PictureBox();
             jugador.ClientSize = new Size(15, 15);
-
-
-
             Bitmap image = new Bitmap("Captura.PNG");
             jugador.Image = (Image)image;
-
-            
-
             columnaJugador = 1;
             filaJugador = 35;
             y1.X = columnaJugador;
             y1.Y = filaJugador;
             direccionJugador = derecha;
-
             jugador.Location = y1;
             panel1.Controls.Add(jugador);
-
-            
             timer1.Interval = 100;
             timer1.Start();
         }

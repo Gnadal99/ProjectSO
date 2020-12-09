@@ -18,7 +18,7 @@ namespace Client
     {
         int estado = 0;
         Socket server;
-        int puerto = 9235;
+        int puerto = 9200;
         Principal prin; 
 
         public User()
@@ -37,7 +37,7 @@ namespace Client
             {
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
-                IPAddress direc = IPAddress.Parse("192.168.56.101");
+                IPAddress direc = IPAddress.Parse("192.168.56.102");
                 IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
 
@@ -47,7 +47,6 @@ namespace Client
                 {
                     server.Connect(ipep);//Intentamos conectar el socket
                     this.BackColor = Color.Green;
-                    MessageBox.Show("Conectado");
 
                 }
                 catch (SocketException ex)
@@ -73,7 +72,7 @@ namespace Client
 
                 if (mensaje == "100/Correct")
                 {
-                    MessageBox.Show("Welcome " + user + ".");
+                    MessageBox.Show("¡Bienvenid@ " + user + "!");
                     prin = new Principal();
                     prin.setServer(server);
                     prin.setUser(user);
