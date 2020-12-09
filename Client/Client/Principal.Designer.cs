@@ -43,24 +43,25 @@
             this.servicios_rec = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.Sala = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
-            this.CrearSala = new System.Windows.Forms.Button();
             this.SalirSala = new System.Windows.Forms.Button();
+            this.CrearSala = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.MeEnvian1 = new System.Windows.Forms.Label();
+            this.MeEnvian2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.Envio = new System.Windows.Forms.TextBox();
-            this.DesactivarChat = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.ActivarChat = new System.Windows.Forms.Button();
             this.MeEnvian = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShowConectados)).BeginInit();
             this.panel1.SuspendLayout();
@@ -207,6 +208,16 @@
             this.panel2.Size = new System.Drawing.Size(196, 283);
             this.panel2.TabIndex = 9;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(27, 7);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(146, 19);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Usuarios conectados";
+            // 
             // button1
             // 
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -234,6 +245,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(268, 283);
             this.panel3.TabIndex = 12;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(84, 7);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 19);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Sala de espera";
             // 
             // Sala
             // 
@@ -276,21 +297,6 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "*No estás en ninguna sala.";
             // 
-            // CrearSala
-            // 
-            this.CrearSala.BackColor = System.Drawing.Color.Transparent;
-            this.CrearSala.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.CrearSala.FlatAppearance.BorderSize = 2;
-            this.CrearSala.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CrearSala.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CrearSala.Location = new System.Drawing.Point(39, 35);
-            this.CrearSala.Name = "CrearSala";
-            this.CrearSala.Size = new System.Drawing.Size(75, 30);
-            this.CrearSala.TabIndex = 0;
-            this.CrearSala.Text = "Crear sala";
-            this.CrearSala.UseVisualStyleBackColor = false;
-            this.CrearSala.Click += new System.EventHandler(this.CrearSala_Click);
-            // 
             // SalirSala
             // 
             this.SalirSala.BackColor = System.Drawing.Color.Transparent;
@@ -306,13 +312,29 @@
             this.SalirSala.UseVisualStyleBackColor = false;
             this.SalirSala.Click += new System.EventHandler(this.SalirSala_Click);
             // 
+            // CrearSala
+            // 
+            this.CrearSala.BackColor = System.Drawing.Color.Transparent;
+            this.CrearSala.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.CrearSala.FlatAppearance.BorderSize = 2;
+            this.CrearSala.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CrearSala.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CrearSala.Location = new System.Drawing.Point(39, 35);
+            this.CrearSala.Name = "CrearSala";
+            this.CrearSala.Size = new System.Drawing.Size(75, 30);
+            this.CrearSala.TabIndex = 0;
+            this.CrearSala.Text = "Crear sala";
+            this.CrearSala.UseVisualStyleBackColor = false;
+            this.CrearSala.Click += new System.EventHandler(this.CrearSala_Click);
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.MeEnvian1);
+            this.panel4.Controls.Add(this.MeEnvian2);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.Envio);
-            this.panel4.Controls.Add(this.DesactivarChat);
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.ActivarChat);
             this.panel4.Controls.Add(this.MeEnvian);
@@ -320,6 +342,22 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(218, 212);
             this.panel4.TabIndex = 14;
+            // 
+            // MeEnvian1
+            // 
+            this.MeEnvian1.AutoSize = true;
+            this.MeEnvian1.Location = new System.Drawing.Point(51, 44);
+            this.MeEnvian1.Name = "MeEnvian1";
+            this.MeEnvian1.Size = new System.Drawing.Size(0, 13);
+            this.MeEnvian1.TabIndex = 19;
+            // 
+            // MeEnvian2
+            // 
+            this.MeEnvian2.AutoSize = true;
+            this.MeEnvian2.Location = new System.Drawing.Point(51, 31);
+            this.MeEnvian2.Name = "MeEnvian2";
+            this.MeEnvian2.Size = new System.Drawing.Size(0, 13);
+            this.MeEnvian2.TabIndex = 18;
             // 
             // label5
             // 
@@ -337,20 +375,6 @@
             this.Envio.Name = "Envio";
             this.Envio.Size = new System.Drawing.Size(128, 20);
             this.Envio.TabIndex = 2;
-            // 
-            // DesactivarChat
-            // 
-            this.DesactivarChat.BackColor = System.Drawing.Color.Transparent;
-            this.DesactivarChat.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.DesactivarChat.FlatAppearance.BorderSize = 2;
-            this.DesactivarChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DesactivarChat.Location = new System.Drawing.Point(111, 156);
-            this.DesactivarChat.Name = "DesactivarChat";
-            this.DesactivarChat.Size = new System.Drawing.Size(71, 40);
-            this.DesactivarChat.TabIndex = 17;
-            this.DesactivarChat.Text = "Desactivar chat";
-            this.DesactivarChat.UseVisualStyleBackColor = false;
-            this.DesactivarChat.Click += new System.EventHandler(this.DesactivarChat_Click);
             // 
             // button3
             // 
@@ -372,7 +396,7 @@
             this.ActivarChat.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ActivarChat.FlatAppearance.BorderSize = 2;
             this.ActivarChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ActivarChat.Location = new System.Drawing.Point(32, 156);
+            this.ActivarChat.Location = new System.Drawing.Point(67, 156);
             this.ActivarChat.Name = "ActivarChat";
             this.ActivarChat.Size = new System.Drawing.Size(73, 40);
             this.ActivarChat.TabIndex = 15;
@@ -397,27 +421,7 @@
             this.label6.Size = new System.Drawing.Size(280, 28);
             this.label6.TabIndex = 14;
             this.label6.Text = "*Si deseas invitar a un usuario a la sala, debes localizarlo \r\nen la lista de con" +
-                "ectados y clickar sobre su nombre.";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(27, 7);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(146, 19);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Usuarios conectados";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(84, 7);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 19);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Sala de espera";
+    "ectados y clickar sobre su nombre.";
             // 
             // Principal
             // 
@@ -485,11 +489,12 @@
         private System.Windows.Forms.Label MeEnvian;
         private System.Windows.Forms.Button ActivarChat;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button DesactivarChat;
         private System.Windows.Forms.TextBox Envio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label MeEnvian1;
+        private System.Windows.Forms.Label MeEnvian2;
     }
 }

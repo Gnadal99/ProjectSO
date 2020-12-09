@@ -67,6 +67,8 @@ namespace Client
 
         public void PonChat(string mensaje)
         {
+            this.MeEnvian2.Text = this.MeEnvian1.Text;
+            this.MeEnvian1.Text = this.MeEnvian.Text;
             this.MeEnvian.Text = mensaje;
         }
 
@@ -503,18 +505,24 @@ namespace Client
 
         private void ActivarChat_Click(object sender, EventArgs e)
         {
-            //Activar el chat
-            string mensaje = "26/" + username;
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
+            if (ActivarChat.Text == "Activar chat")
+            {
+                //Activar el chat
+                ActivarChat.Text = "Desactivar chat";
+                string mensaje = "26/" + username;
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+            }
+            else if (ActivarChat.Text == "Desactivar chat")
+            {
+                //Desactivar el chat
+                ActivarChat.Text = "Activar chat";
+                string mensaje = "27/" + username;
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+            }
         }
 
-        private void DesactivarChat_Click(object sender, EventArgs e)
-        {
-            //Desactivar el chat
-            string mensaje = "27/" + username;
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-        }
+        
     }
 }
