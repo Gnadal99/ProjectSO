@@ -59,7 +59,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.Envio = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.ActivarChat = new System.Windows.Forms.Button();
             this.MeEnvian = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -189,7 +188,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.BackColor = System.Drawing.Color.Lavender;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.servicios_rec);
             this.panel1.Location = new System.Drawing.Point(15, 391);
@@ -234,7 +233,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.BackColor = System.Drawing.Color.Lavender;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.Sala);
@@ -263,7 +262,7 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Sala.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.Sala.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.Sala.BackgroundColor = System.Drawing.Color.Lavender;
             this.Sala.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Sala.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Sala.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -329,14 +328,13 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel4.BackColor = System.Drawing.Color.Lavender;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.MeEnvian1);
             this.panel4.Controls.Add(this.MeEnvian2);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.Envio);
             this.panel4.Controls.Add(this.button3);
-            this.panel4.Controls.Add(this.ActivarChat);
             this.panel4.Controls.Add(this.MeEnvian);
             this.panel4.Location = new System.Drawing.Point(504, 118);
             this.panel4.Name = "panel4";
@@ -363,11 +361,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(88, 6);
+            this.label5.Location = new System.Drawing.Point(60, 6);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 19);
+            this.label5.Size = new System.Drawing.Size(94, 19);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Chat";
+            this.label5.Text = "Chat de Sala";
             // 
             // Envio
             // 
@@ -389,20 +387,6 @@
             this.button3.Text = "Enviar";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // ActivarChat
-            // 
-            this.ActivarChat.BackColor = System.Drawing.Color.Transparent;
-            this.ActivarChat.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.ActivarChat.FlatAppearance.BorderSize = 2;
-            this.ActivarChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ActivarChat.Location = new System.Drawing.Point(67, 156);
-            this.ActivarChat.Name = "ActivarChat";
-            this.ActivarChat.Size = new System.Drawing.Size(73, 40);
-            this.ActivarChat.TabIndex = 15;
-            this.ActivarChat.Text = "Activar chat";
-            this.ActivarChat.UseVisualStyleBackColor = false;
-            this.ActivarChat.Click += new System.EventHandler(this.ActivarChat_Click);
             // 
             // MeEnvian
             // 
@@ -487,7 +471,6 @@
         private System.Windows.Forms.Button SalirSala;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label MeEnvian;
-        private System.Windows.Forms.Button ActivarChat;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox Envio;
         private System.Windows.Forms.Label label5;

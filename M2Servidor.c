@@ -808,37 +808,19 @@ void *AtenderCliente (void *socket)
 		else if (codigo==25)//Enviar mensaje
 		{
 			char frase[100];
+			int sala;
 			char notificacion [310];
 			char nombre_usuario[40];
+			t = strtok( NULL, "/");
+			sala = atoi(t);
 			t = strtok( NULL, "/");
 			strcpy (nombre_usuario, t);
 			t = strtok (NULL, "/");
 			strcpy (frase, t);
 			sprintf(notificacion, "253/%s/%s", nombre_usuario ,frase);
 			int j;
-			for (j=0; j<ListaChat.num; j++)
-				write (ListaChat.conectados[j].socket, notificacion, strlen(notificacion));
-		}
-		
-		else if (codigo==26)//Activos en el chat
-		{
-			char nombre_usuario[40];
-			t = strtok( NULL, "/");
-			strcpy (nombre_usuario, t);
-			pthread_mutex_lock(&mutex); //No interrumpir
-			int poner = Pon (&ListaChat, nombre_usuario, sock_conn);
-			pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
-			
-		}
-		
-		else if (codigo==27)//Desactivados del chat
-		{
-			char nombre_usuario[40];
-			t = strtok( NULL, "/");
-			strcpy (nombre_usuario, t);
-			pthread_mutex_lock(&mutex); //No interrumpir
-			int eliminar = Elimina (&ListaChat, nombre_usuario);
-			pthread_mutex_unlock(&mutex); //Ahora si se puede interrumpir
+			for (j=0; j<listaPartidas.partidas[sala].num; j++)
+				write (listaPartidas.partidas[sala].jugadores[j].jugador.socket, notificacion, strlen(notificacion));
 		}
 		
 		if ((codigo != 0)&&(codigo != 21)&&(codigo != 22)&&(codigo != 24)&&(codigo != 25)&&(codigo != 26)&&(codigo != 27))
