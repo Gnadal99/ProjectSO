@@ -34,4 +34,10 @@
         Añadir la posibilidad de invitar a amigos a jugar y que estos acepten o no. Para eso usamos una sala.
           Versión 4 generada por Gerard
           Versión 4 verificada y video por Catalina
-        
+         
+### Versión 5
+##### [Video V5](https://www.loom.com/share/afd96f6d68a24d48900d1576a81f5090 "Video V5")
+
+        Añadir la protección cross-threading y implementar un chat para que los jugadores se puedan comunicar.
+          Versión 5 generada por Catalina
+          Versión 5 verificada y video por Gerard
