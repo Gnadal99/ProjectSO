@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuantasPartidasHeGanadoEnTotalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +61,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.MeEnvian = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShowConectados)).BeginInit();
             this.panel1.SuspendLayout();
@@ -149,9 +150,9 @@
             // 
             // ShowConectados
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.ShowConectados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            this.ShowConectados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.ShowConectados.BackgroundColor = System.Drawing.Color.Lavender;
             this.ShowConectados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ShowConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -257,11 +258,11 @@
             // 
             // Sala
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Sala.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Sala.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.Sala.BackgroundColor = System.Drawing.Color.Lavender;
             this.Sala.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Sala.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -330,6 +331,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Lavender;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.button2);
             this.panel4.Controls.Add(this.MeEnvian1);
             this.panel4.Controls.Add(this.MeEnvian2);
             this.panel4.Controls.Add(this.label5);
@@ -344,7 +346,7 @@
             // MeEnvian1
             // 
             this.MeEnvian1.AutoSize = true;
-            this.MeEnvian1.Location = new System.Drawing.Point(51, 44);
+            this.MeEnvian1.Location = new System.Drawing.Point(61, 84);
             this.MeEnvian1.Name = "MeEnvian1";
             this.MeEnvian1.Size = new System.Drawing.Size(0, 13);
             this.MeEnvian1.TabIndex = 19;
@@ -352,7 +354,7 @@
             // MeEnvian2
             // 
             this.MeEnvian2.AutoSize = true;
-            this.MeEnvian2.Location = new System.Drawing.Point(51, 31);
+            this.MeEnvian2.Location = new System.Drawing.Point(61, 71);
             this.MeEnvian2.Name = "MeEnvian2";
             this.MeEnvian2.Size = new System.Drawing.Size(0, 13);
             this.MeEnvian2.TabIndex = 18;
@@ -369,7 +371,7 @@
             // 
             // Envio
             // 
-            this.Envio.Location = new System.Drawing.Point(37, 80);
+            this.Envio.Location = new System.Drawing.Point(37, 111);
             this.Envio.Name = "Envio";
             this.Envio.Size = new System.Drawing.Size(128, 20);
             this.Envio.TabIndex = 2;
@@ -380,7 +382,7 @@
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button3.FlatAppearance.BorderSize = 2;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(92, 106);
+            this.button3.Location = new System.Drawing.Point(92, 140);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(73, 25);
             this.button3.TabIndex = 16;
@@ -391,7 +393,7 @@
             // MeEnvian
             // 
             this.MeEnvian.AutoSize = true;
-            this.MeEnvian.Location = new System.Drawing.Point(51, 57);
+            this.MeEnvian.Location = new System.Drawing.Point(61, 97);
             this.MeEnvian.Name = "MeEnvian";
             this.MeEnvian.Size = new System.Drawing.Size(0, 13);
             this.MeEnvian.TabIndex = 1;
@@ -406,6 +408,20 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "*Si deseas invitar a un usuario a la sala, debes localizarlo \r\nen la lista de con" +
     "ectados y clickar sobre su nombre.";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(131, 171);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(73, 25);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Silenciar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Principal
             // 
@@ -479,5 +495,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label MeEnvian1;
         private System.Windows.Forms.Label MeEnvian2;
+        private System.Windows.Forms.Button button2;
     }
 }

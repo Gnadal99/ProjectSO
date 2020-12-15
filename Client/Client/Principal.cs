@@ -375,8 +375,11 @@ namespace Client
                         break;
 
                     case 253: //Recibo el mensaje
-                        del = new DelegadoParaPonerTexto(PonChat);
-                        this.Invoke(del, new Object[] { trozos[1] + ": " + trozos[2]});
+                        if (button2.Text == "Silenciar")
+                        {
+                            del = new DelegadoParaPonerTexto(PonChat);
+                            this.Invoke(del, new Object[] { trozos[1] + ": " + trozos[2] });
+                        }
                         break;
 
                 }
@@ -506,8 +509,16 @@ namespace Client
             }
         }
 
-       
-
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(button2.Text == "Silenciar")
+            {
+                button2.Text = "Dejar de silenciar";
+            }
+            else if (button2.Text == "Dejar de silenciar")
+            {
+                button2.Text = "Silenciar";
+            }
+        }
     }
 }
