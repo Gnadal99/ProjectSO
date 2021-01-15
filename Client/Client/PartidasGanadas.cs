@@ -15,29 +15,30 @@ namespace Client
 {
     public partial class PartidasGanadas : Form
     {
-        Socket server;
-        string username;
+
+        //CONSULTA 1: Cuantas partidas ha ganado un jugador x.
 
         public void setrespuesta(string a)
         {
-
-             if (a == "1/NoExist")
+            //Se escribe en el "label2" la respuesta del servidor.
+             if (a == "1/NoExist")//El usuario introducido no existe.
                 {
                     label2.Text = "El jugador " + usernameconsulta.Text + " no existe.";
                 }
 
-                else
+             else//El usuario introducido si existe, por lo tanto, se escribe el número de partidas ganadas.
                 {
                     label2.Text = "El jugador " + usernameconsulta.Text + " ha ganado " + a + " partidas.";
                 }
-
-       
         }
 
         public PartidasGanadas()
         {
             InitializeComponent();
         }
+
+        //Establecer el socket.
+        Socket server;
 
         public void setServer(Socket a)   
         {
@@ -51,29 +52,18 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Enviar el nombre del jugador sobre el cual queremos saber la consulta al servidor.
             if (usernameconsulta.Text != "")
             {
                 string mensaje = "1/" + usernameconsulta.Text;
-                // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
-
-               
-                /*//Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                */
-                /* if (mensaje == "1/NoExist")
-                {
-                    label2.Text = "El jugador " + usernameconsulta.Text + " no existe.";
-                }
-
-                else
-                {
-                    label2.Text = "El jugador " + usernameconsulta.Text + " ha ganado " + mensaje + " partidas.";
-                }*/
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

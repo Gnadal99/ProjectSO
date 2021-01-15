@@ -15,12 +15,16 @@ namespace Client
 {
     public partial class HoraFecha : Form
     {
-        Socket server;
+        //CONSULTA 3: indicar la hora y la fecha de una partida x mediante el ID.
+
         public HoraFecha()
 
         {
             InitializeComponent();
         }
+
+        //Establecer el socket
+        Socket server;
 
         public void setServer(Socket a)
         {
@@ -33,44 +37,33 @@ namespace Client
         }
 
         public void setrespuesta(string a)
-
         {
-            if (a == "3/NoExist")
+            //Se escribe en el "label2" la respuesta del servidor.
+            if (a == "3/NoExist")//El ID de la partida introducido no existe.
             {
                 label2.Text = "La partida con el ID: " + IDpartida.Text + " no existe.";
             }
 
-            else
+            else//El ID introducido si existe, por lo tanto, se escribe la hora y la fecha de la partida.
             {
                 label2.Text = "La partida fue jugada el " + a + ".";
             }
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Se envia el ID de la partida sobre la cual queremos saber la consulta al servidor.
             if (IDpartida.Text != "")
             {
                 string mensaje = "3/" + IDpartida.Text;
-                // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
-
-                /*//Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-                if (mensaje == "3/NoExist")
-                {
-                    label2.Text = "La partida con el ID: " + IDpartida.Text + " no existe.";
-                }
-
-                else
-                {
-                    label2.Text = "La partida fue jugada el " + mensaje + ".";
-                }*/
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

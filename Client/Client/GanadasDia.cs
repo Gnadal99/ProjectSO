@@ -15,23 +15,31 @@ namespace Client
 {
     public partial class GanadasDia : Form
     {
-        string username;
-        Socket server;
+
+        //CONSULTA 4: Cuantas partidas ganó el usuario en un día x.
+
         public GanadasDia()
         {
             InitializeComponent();
         }
 
         public void setrespuesta (string a)
-        
         {
+            //Se escribe en el "label2" la respuesta del servidor, que es el número de partidas ganadas el dia introducido.
             label2.Text = "El día " + textBox1.Text + " ganaste " + a + " partidas.";
         }
 
+        //Variable a la que se le asigna el nombre del usuario que ha iniciado el juego.
+        string username;
+
+        //Set para asignar el nombre del usuario que ha iniciado el juego.
         public void setName(string a)
         {
             this.username = a;
         }
+
+        //Se establece el socket.
+        Socket server;
 
         public void setServer(Socket a)
         {
@@ -40,25 +48,23 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Se envía el nombre del jugador y el dia sobre el cual queremos saber la consulta al servidor.
             if (textBox1.Text != "")
             {
                 string mensaje = "4/" + username + "-" + textBox1.Text;
-                // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
-
-               /*//Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-                label2.Text = "El día " + textBox1.Text + " ganaste " + mensaje + " partidas."; */
             }
         }
 
         private void GanadasDia_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

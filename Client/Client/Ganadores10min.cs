@@ -11,13 +11,17 @@ namespace Client
 {
     public partial class Ganadores10min : Form
     {
-        string Lista;
+        //CONSULTA 2: Ganadores de partidas de con una duracion superior a 10 min.
+
         public Ganadores10min()
         {
             InitializeComponent();
         }
-       
 
+        //Variable a la que se le asigna la lista de usuarios que son ganadores de partidas de con una duracion superior a 10 min.
+        string Lista;
+
+        //Set para asignar la lista de usuarios que son ganadores de partidas de con una duracion superior a 10 min.
         public void setLista(string Lista2)
         {
             this.Lista = Lista2;
@@ -25,15 +29,15 @@ namespace Client
 
         private void Ganadores10min_Load(object sender, EventArgs e)
         {
+            //Creacion de la tabla donde se introduciran los nombres que son solucion a la consulta.
             string[] vector = new string[5];
-
             vector= Lista.Split(' ');
-
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.RowCount = 1;
             dataGridView1.ColumnCount = 5;
 
+            //Se introducen los nombres que son solucion a la consulta.
             int i = 0;
             while (i < vector.Length)
             {
@@ -42,9 +46,9 @@ namespace Client
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

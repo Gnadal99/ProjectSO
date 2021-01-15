@@ -13,6 +13,21 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -64,11 +79,35 @@
     <Compile Include="HoraFecha.Designer.cs">
       <DependentUpon>HoraFecha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio_primero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio_primero.Designer.cs">
+      <DependentUpon>Inicio_primero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Juego.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Juego.Designer.cs">
       <DependentUpon>Juego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartidaGanada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartidaGanada.Designer.cs">
+      <DependentUpon>PartidaGanada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartidaPerdida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartidaPerdida.Designer.cs">
+      <DependentUpon>PartidaPerdida.cs</DependentUpon>
     </Compile>
     <Compile Include="PartidasGanadas.cs">
       <SubType>Form</SubType>
@@ -81,6 +120,17 @@
     </Compile>
     <Compile Include="Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Transicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transicion.Designer.cs">
+      <DependentUpon>Transicion.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
       <SubType>Form</SubType>
@@ -99,8 +149,20 @@
     <EmbeddedResource Include="HoraFecha.resx">
       <DependentUpon>HoraFecha.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio_primero.resx">
+      <DependentUpon>Inicio_primero.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Juego.resx">
       <DependentUpon>Juego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartidaGanada.resx">
+      <DependentUpon>PartidaGanada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartidaPerdida.resx">
+      <DependentUpon>PartidaPerdida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartidasGanadas.resx">
       <DependentUpon>PartidasGanadas.cs</DependentUpon>
@@ -108,18 +170,18 @@
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transicion.resx">
+      <DependentUpon>Transicion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <None Include="bin\Debug\Client.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,6 +191,196 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\1.m4a" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\1be8dabea478ee54a8b4f39565d9ebaf90f06ae8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\2.m4a" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\3.m4a" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\4.m4a" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\56616459-resumen-de-fondo-de-color-azul-oscuro-plantilla-de-diseño-telón-de-fondo-de-textura-.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Client.vshost.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\d5oeaol-d0b6c5c4-4cbe-4d3a-90fc-0c3678c3ca39.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\descarga %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\descarga.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Lightcycle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\moto.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\nombre.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\nombreabajo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\salva.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\tenor.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\TR2N-Sample.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\triangulos.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\tron-3-with-jared-leto-finds-director_fgca.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Tron-Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\tron-logo-font-download1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\start.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\start - copia.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz33333.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz31.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz55.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\fondoazul.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\55.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\666.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\blue.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\blueeee.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\blue11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Captura.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\jjjjjjj.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\jjjjjjj1111.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\lolo.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\lolololololo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\sss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\ssss2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\sssss3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\hola.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\plataplata.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\plataplata111.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\step111.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\partida.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\ganada.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luz2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\llllllll.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\kkkkkkk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\perdida.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\loooooo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\luuuuuu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\jj.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
