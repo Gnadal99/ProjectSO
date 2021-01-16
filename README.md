@@ -41,3 +41,10 @@
         Añadir la protección cross-threading y implementar un chat para que los jugadores se puedan comunicar.
           Versión 5 generada por Catalina
           Versión 5 verificada y video por Gerard
+          
+### Versión 6
+##### [Video V6](https://www.loom.com/share/afd96f6d68a24d48900d1576a81f5090 "Video V6")
+
+        Mejoras visuales, ordenación de código, creación e implementación del juego.
+          Mejoras visuales y ordenación de código por Catalina
+          Creación e implementación del juego por Gerard
