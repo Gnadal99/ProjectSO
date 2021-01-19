@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lolo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\lolo.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="moto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\moto.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -127,20 +130,23 @@
   <data name="luz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luz.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Lightcycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Lightcycle.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="llllllll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\llllllll.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="descarga" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\descarga.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="start1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\start.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="descarga__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\descarga (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="triangulos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\triangulos.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="partida" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\partida.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fondoazul" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\fondoazul.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,17 +178,17 @@
   <data name="blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\blue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nombreabajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\nombreabajo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="luz4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luz.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="luz33333" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luz33333.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hola" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\hola.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="luz1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\luz1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tron_3_with_jared_leto_finds_director_fgca" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\tron-3-with-jared-leto-finds-director_fgca.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="luuuuuu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luuuuuu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -192,12 +198,6 @@
   </data>
   <data name="step111" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\step111.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Captura1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Captura.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="luz12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\luz1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="perdida" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\perdida.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -210,6 +210,9 @@
   </data>
   <data name="d5oeaol_d0b6c5c4_4cbe_4d3a_90fc_0c3678c3ca39" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\d5oeaol-d0b6c5c4-4cbe-4d3a-90fc-0c3678c3ca39.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jj1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\jj.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="partida1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\partida.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,8 +229,8 @@
   <data name="_1be8dabea478ee54a8b4f39565d9ebaf90f06ae8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\1be8dabea478ee54a8b4f39565d9ebaf90f06ae8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lolo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\lolo.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="luz12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\luz1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="start___copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\start - copia.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,11 +238,11 @@
   <data name="Client_vshost" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Client.vshost.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Lightcycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Lightcycle.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Captura1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Captura.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="luz1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\luz1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="partida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\partida.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="luz55" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luz55.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,8 +250,8 @@
   <data name="luz13" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luz1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tron_3_with_jared_leto_finds_director_fgca" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\tron-3-with-jared-leto-finds-director_fgca.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hola" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\hola.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TR2N_Sample" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\TR2N-Sample.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,8 +274,8 @@
   <data name="luz31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\luz31.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="start1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\start.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="nombreabajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\nombreabajo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lolololololo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\lolololololo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,7 +295,7 @@
   <data name="plataplata111" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\plataplata111.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jj1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\jj.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="activarsonido" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\activarsonido.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

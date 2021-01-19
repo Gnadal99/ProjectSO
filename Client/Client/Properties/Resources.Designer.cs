@@ -104,6 +104,16 @@ namespace Client.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap activarsonido {
+            get {
+                object obj = ResourceManager.GetObject("activarsonido", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blue {
             get {
                 object obj = ResourceManager.GetObject("blue", resourceCulture);

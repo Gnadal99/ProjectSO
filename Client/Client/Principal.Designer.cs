@@ -171,7 +171,7 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -285,7 +285,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(12, 244);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.Size = new System.Drawing.Size(174, 23);
             this.button2.TabIndex = 20;
             this.button2.Text = "Silenciar";
             this.button2.UseVisualStyleBackColor = false;
@@ -399,10 +399,10 @@
             // Sala
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.Sala.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.Sala.BackgroundColor = System.Drawing.Color.Black;
             this.Sala.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -421,7 +421,7 @@
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -489,7 +489,7 @@
             // musica
             // 
             this.musica.BackColor = System.Drawing.Color.Transparent;
-            this.musica.BackgroundImage = global::Client.Properties.Resources.sssss3;
+            this.musica.BackgroundImage = global::Client.Properties.Resources.activarsonido;
             this.musica.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.musica.FlatAppearance.BorderSize = 0;
             this.musica.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

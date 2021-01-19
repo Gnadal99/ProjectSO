@@ -84,7 +84,6 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::Client.Properties.Resources.Captura;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -102,7 +101,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.BackgroundImage = global::Client.Properties.Resources.Captura;
+            this.BackgroundImage = global::Client.Properties.Resources.plataplata111;
             this.ClientSize = new System.Drawing.Size(304, 121);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);

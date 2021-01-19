@@ -59,12 +59,11 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::Client.Properties.Resources.Captura;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(112, 214);
+            this.button1.Location = new System.Drawing.Point(113, 214);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(69, 23);
             this.button1.TabIndex = 2;
@@ -77,7 +76,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = global::Client.Properties.Resources.Captura;
+            this.BackgroundImage = global::Client.Properties.Resources.plataplata111;
             this.ClientSize = new System.Drawing.Size(305, 249);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);

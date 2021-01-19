@@ -91,22 +91,23 @@ namespace Client
                 jugador3 = null;
                 for (int i = 0; i < ocupados3.Length; i++)
                 {
-                    panel1.Controls.Remove(ocupados2[i]);
+                    panel1.Controls.Remove(ocupados3[i]);
                     ocupados3[i] = null;
                 }
             }
-            else if (a == 2)
+            else if (a == 4)
             {
                 jugador4vivo = 0;
                 panel1.Controls.Remove(jugador4);
                 jugador4 = null;
                 for (int i = 0; i < ocupados4.Length; i++)
                 {
-                    panel1.Controls.Remove(ocupados2[i]);
+                    panel1.Controls.Remove(ocupados4[i]);
                     ocupados4[i] = null;
                 }
             }
-            jugadoresrestantes = jugadoresrestantes - 1;
+
+            this.jugadoresrestantes = this.jugadoresrestantes - 1;
         }
         public void cambiarAutoDireccion(int jug, int dir)
         {
@@ -1006,6 +1007,15 @@ namespace Client
         static int columnaJugador3 = 40;
         static int filaJugador3 = 730;
 
+        public void CrearOcupados()
+        {
+            CheckForIllegalCrossThreadCalls = false;
+            ocupados1 = new PictureBox[160000];
+            ocupados2 = new PictureBox[160000];
+            ocupados3 = new PictureBox[160000];
+            ocupados4 = new PictureBox[160000];
+        }
+
 
         //Metodos
         public void CambiarDireccionJugador3(KeyPressEventArgs e)
@@ -1335,11 +1345,9 @@ namespace Client
         private void Juego_Load(object sender, EventArgs e)
         {
             i = 0;
-            CheckForIllegalCrossThreadCalls = false;
-            ocupados1 = new PictureBox[160000];
-            ocupados2 = new PictureBox[160000];
-            ocupados3 = new PictureBox[160000];
-            ocupados4 = new PictureBox[160000];
+
+            CrearOcupados();
+            
             
             jugador1 = new PictureBox();
             jugador1.ClientSize = new Size(30, 14);
@@ -1421,6 +1429,7 @@ namespace Client
             int minutos = segundos / 60;
             int segundosrestantes = segundos % 60;
             Reloj.Text = "Tiempo de partida : 0:" + Convert.ToString(minutos) + ":" + Convert.ToString(segundosrestantes) + ":" + Convert.ToString(cseg);
+            
             if(jugadoresrestantes==1)
             {
                 string hora =  DateTime.Now.ToString("HH:mm:ss");

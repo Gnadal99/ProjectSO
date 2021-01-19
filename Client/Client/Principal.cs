@@ -152,6 +152,8 @@ namespace Client
             ShowConectados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ShowConectados.RowCount = vector.Length;
             ShowConectados.ColumnCount = 1;
+            ShowConectados.DefaultCellStyle.ForeColor = Color.Black;
+            ShowConectados.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             //Rellenar la tabla dónde se muestran los usuarios conectados.
             int i = 0;
@@ -181,6 +183,8 @@ namespace Client
                 numSala = Convert.ToInt32(vector2[1]);
                 Sala.Rows[miemSala].Cells[0].Value = username;
                 Sala.Rows[miemSala].Cells[1].Value = "Aceptada";
+                Sala.DefaultCellStyle.ForeColor=Color.Black;
+                Sala.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 miemSala++;
                 CrearSala.Text = "Estas en sala";
             }
@@ -199,6 +203,8 @@ namespace Client
                 MessageBox.Show("Invitación realizada con exito, espera a que acepte.");
                 Sala.Rows[miemSala].Cells[0].Value = vector3[1];
                 Sala.Rows[miemSala].Cells[1].Value = "Pendiente";
+                Sala.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                Sala.DefaultCellStyle.ForeColor = Color.Black;
                 miemSala++;
             }
             else if (vector3[0] == "noexist")
@@ -238,6 +244,9 @@ namespace Client
                         }
                         l++;
                     }
+
+                    Sala.DefaultCellStyle.ForeColor = Color.Black;
+                    Sala.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     CrearSala.Text = "Estas en sala";
                 }
                 else
@@ -270,6 +279,8 @@ namespace Client
                     if (Convert.ToString(Sala.Rows[ip].Cells[0].Value) == vector5[0])
                     {
                         Sala.Rows[ip].Cells[1].Value = "Aceptado";
+                        Sala.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        Sala.DefaultCellStyle.ForeColor = Color.Black;
                     }
                     ip++;
                 }
@@ -515,8 +526,6 @@ namespace Client
                 string mensaje = "500/" + numSala;
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
-
-                
             }
             else
             {
@@ -541,15 +550,23 @@ namespace Client
         //Evento que permite al usuario clickar en otro usuario conectado para invitarlo a la sala.
         private void ShowConectados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Invitación a la sala.
-            DialogResult result = MessageBox.Show("Deseas invitar a este jugador?", "Invitar jugador", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if (label4.Text.Split(' ')[1] == username)
             {
-                //Mensaje de invitación a la sala.
-                string mensaje = "21/" + Convert.ToString(numSala) + "/" + username + "/" + ShowConectados.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+                if (Convert.ToString(ShowConectados.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)!=username && e.RowIndex!=0)
+                {
+                    //Invitación a la sala.
+                    DialogResult result = MessageBox.Show("Deseas invitar a este jugador?", "Invitar jugador", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        //Mensaje de invitación a la sala.
+                        string mensaje = "21/" + Convert.ToString(numSala) + "/" + username + "/" + ShowConectados.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                        server.Send(msg);
+                    }
+                }
             }
+            else
+                MessageBox.Show("Tienes que ser propietario de una sala para invitar, si no estás en sala puedes crear una.");
         }
 
         //Botón para salir de la sala.
@@ -580,12 +597,17 @@ namespace Client
         //Botón para escribir en el chat.
         private void button3_Click(object sender, EventArgs e)
         {
-            if (CrearSala.Text == "Estas en sala")//únicamente reciben mensajes los usuarios que forman parte de una misma sala.
+            if (button2.Text == "Silenciar")
             {
-                //Mensaje al servidor.
-                string mensaje = "25/" + numSala + "/" + username + "/" + Envio.Text;
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+                if (CrearSala.Text == "Estas en sala")//únicamente reciben mensajes los usuarios que forman parte de una misma sala.
+                {
+                    //Mensaje al servidor.
+                    string mensaje = "25/" + numSala + "/" + username + "/" + Envio.Text;
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    server.Send(msg);
+                }
+                else
+                    MessageBox.Show("Tienes que estar en una sala para chatear");
             }
         }
 
@@ -611,14 +633,14 @@ namespace Client
             if (sonido ==1)
             {
                 player.Stop();
-                Bitmap image = new Bitmap("activarsonido.png");
+                Bitmap image = new Bitmap("sssss3.png");
                 musica.BackgroundImage = (Image)image;
                 sonido = 0;
             }
             else if (sonido == 0)
             {
                 player.Play();
-                Bitmap image = new Bitmap("sssss3.png");
+                Bitmap image = new Bitmap("activarsonido.png");
                 musica.BackgroundImage = (Image)image;
                 sonido = 1;
             }
